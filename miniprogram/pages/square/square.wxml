@@ -1,0 +1,28 @@
+<!--pages/square/square.wxml-->
+<wxs src="../../common.wxs" module="morejs" />
+<van-tabs active="{{ active }}" bind:change="onChange" custom-class="wen">
+  <van-tab title="闲置宝贝">
+            <block wx:if="{{list.length==0}}">
+                  <van-empty description="空空如也" />
+            </block>
+  </van-tab>
+  <van-tab title="社区美食">
+            <block wx:if="{{list.length==0}}">
+                  <van-empty description="空空如也" />
+            </block>
+        
+  </van-tab>
+  <van-tab title="工作推荐">
+            <block wx:if="{{list.length==0}}">
+                  <van-empty description="空空如也" />
+            </block>
+        
+  </van-tab>
+  <van-tab title="无限畅聊">
+            <block wx:if="{{list.length==0}}">
+                  <van-empty description="空空如也" />
+            </block>
+        
+  </van-tab>
+</van-tabs>
+
