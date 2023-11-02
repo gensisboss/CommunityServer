@@ -25,7 +25,7 @@
             </block>
         
   </van-tab>
-  <van-tab title="无限畅聊">
+  <van-tab title="我的发布">
             <block wx:if="{{list.length==0}}">
                   <van-empty description="空空如也" />
             </block>

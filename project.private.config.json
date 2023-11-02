@@ -112,6 +112,20 @@
                     "pathName": "pages/paihang/paihang",
                     "query": "id=%E5%B7%B2%E8%AE%A4%E8%AF%81",
                     "scene": null
+                },
+                {
+                    "name": "搜索界面",
+                    "pathName": "pages/search/search",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "发布界面",
+                    "pathName": "pages/fabu/fabu",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
                 }
             ]
         }

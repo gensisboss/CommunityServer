@@ -1,0 +1,36 @@
+<!--pages/qu/qu.wxml-->
+
+
+<van-field value="{{ title }}" label="标题"  placeholder="请输入标题" clearable label-class="ziti" placeholder-style="font-size:30rpx; " bind:change="onChangeTitle" />
+
+
+<van-field value="{{ concat }}" label="手机"  placeholder="请输入联系方式" clearable label-class="ziti" placeholder-style="font-size:30rpx; " bind:change="onChangeTitle" />
+  
+<view class="b_notes">
+    <view class="b_text">
+        <textarea value="{{notes}}" bindinput="noteInput" maxlength="100" placeholder="请输入简介"></textarea>
+        <view class="b_less">{{note_counts}}/100</view>
+    </view>
+</view>
+<view class="des"> 温馨提示：如果懒得填写简介，也可以直接上传取件截图</view>
+<view class="img">
+    <block wx:for="{{ fileList }}" wx:key="index">
+        <view class="img2">
+            <view bindtap="delete" data-id="{{index}}">x</view>
+            <image bindtap="previewImage" data-url="{{item.url}}" src="{{item.url}}"></image>
+        </view>
+    </block>
+    <image wx:if="{{fileList.length<9}}" bindtap="uploadToCloud" style="width: 200rpx;height: 200rpx;" src="/images/xiangji.png"></image>
+</view>
+
+
+
+<view class="checked">
+    <text>是否自提</text>
+    <van-switch checked="{{ checked }}" size="35rpx" bind:change="onChange_check" />
+</view>
+
+
+
+
+<van-submit-bar  button-text="发布" bind:submit="onSubmit" />
