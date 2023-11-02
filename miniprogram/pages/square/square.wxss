@@ -1,96 +1,67 @@
 /* pages/square/square.wxss */
-/* pages/publish/publish.wxss */
-
-.dingdan{
-  width: 94%;
-  margin-left: 3%;
-  height: 400rpx;
-  border-radius: 20rpx;
-  box-shadow: #dddee1 10rpx 10rpx 10rpx 10rpx;
-  background-color: white;
-  margin-top: 30rpx;
-  margin-bottom: 20rpx;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  font-size: 30rpx;
+/* 顶部搜索框样式 */
+.searchOuterView{
+    /*设置内边距*/
+    padding:15rpx;
+  }
+  .searchInnerView{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* 设置宽高*/
+    width: 720rpx;
+    height:58rpx;
+    /*设置背景颜色*/
+    background:#eeeeee;
+    /*设置边框*/
+    border:2rpx solid #ececee;
+    /*设置边框圆角*/
+    border-radius: 8rpx;
+    /*设置行高*/
+    line-height: 52rpx;
+    /*设置边框包含在宽高之内*/
+    box-sizing: border-box;
+  }
+  .searchInnerView > image{
+    /* 给图片设置宽和高 */
+    width:40rpx;
+    height:40rpx;
+    margin-left: 10rpx;
+    /*设置垂直对齐方式*/
+    vertical-align: middle;
+  }
+  .searchInnerView > text{
+    /* 给文字设置大小 */
+    font-size:32rpx;
+    /* 给文字设置颜色 */
+    color: #353434;
+    margin-left: auto;
+    margin-right: auto;
+  }
   
-}
-.dingdan_top{
-width: 95%;
-height: 15%;
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
-overflow: hidden;
-margin-left: 2%;
-color: #495060;
-
-}
-.dingdan_top1{
-   display: flex;
-   flex-direction: row;
-   justify-content: center;
-   
-}
-.dingdan_center{
- width: 95%;
- height: 50%;
- display: flex;
- flex-direction: column;
- justify-content: space-around;
- align-items: center;
- overflow: hidden;
- margin-left: 2%;
- 
-}
-.dingdan_centernotes{
-  width: 90%;
-  overflow: hidden;
-  white-space: nowrap;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
   
-}
-.dingdan_centerleft{
-   width: 95%;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-   
-   overflow: hidden;
-   flex-wrap: nowrap;
-}
-.dingdan_centermai{
-width: 50%;
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
+  
 
-overflow: hidden;
-flex-wrap: nowrap;
+
+
+
+
+.movable-area {
+    pointer-events:none;
+    /* 这个属性设置为none,让所有事件穿透过去 */
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
-.dangdan_bottom{
-margin-left: 2%;
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
-}
-.dangdan_bottom1{
-margin-left: 2%;
-display: flex;
-flex-direction: row;
-justify-content: flex-end;
-align-items: flex-end;
-}
-.bottom{
-display: flex;
-flex-direction: row;
-justify-content: flex-end;
-margin-bottom: 2%;
+
+.movable-view {
+    pointer-events:auto;
+    /* 重设为auto,覆盖父属性设置  宽高要跟图片大小一致*/
+    height: 100rpx;
+    width: 100rpx;
 }

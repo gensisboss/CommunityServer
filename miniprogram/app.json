@@ -44,8 +44,8 @@
       {
         "text": "广场",
         "pagePath": "pages/square/square",
-        "iconPath": "images/fabu.png",
-        "selectedIconPath": "images/fabu2.png"
+        "iconPath": "images/square.png",
+        "selectedIconPath": "images/square2.png"
       },
       {
         "text": "我的",

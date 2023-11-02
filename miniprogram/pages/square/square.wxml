@@ -1,4 +1,11 @@
 <!--pages/square/square.wxml-->
+<view class="searchOuterView">
+    <view class="searchInnerView">
+        <image src="../../images/search.png"></image>
+        <text>搜索</text>
+    </view>
+</view>
+
 <wxs src="../../common.wxs" module="morejs" />
 <van-tabs active="{{ active }}" bind:change="onChange" custom-class="wen">
   <van-tab title="闲置宝贝">
@@ -25,4 +32,11 @@
         
   </van-tab>
 </van-tabs>
+
+<movable-area class="movable-area">
+<movable-view x="{{x}}" y="{{y}}"  animation="{{false}}" class="movable-view" direction='all'   catchtap="getPrompt" bindtouchend="handleTouchEnd" bindchange="handleTouchMove">
+   <image style="width: 80rpx;height: 80rpx;"  fit="cover" mode="scaleToFill" src="../../images/fabu2.png"></image>
+</movable-view>
+</movable-area>
+
 
