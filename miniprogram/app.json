@@ -2,25 +2,12 @@
   "pages": [
     "pages/index/index",
     "pages/my/my",
-    "pages/publish/publish",
-    "pages/order/order",
     "pages/detail/detail",
     "pages/square/square",
     "pages/kefu/kefu",
-    "pages/apply/apply",
-    "pages/dizhi/dizhi",
-    "pages/recharge/recharge",
-    "pages/reflect/reflect",
     "pages/fabu/fabu",
-    "pages/other/other",
-    "pages/secondhand/secondhand",
-    "pages/second_fabu/second_fabu",
-    "pages/pub_detail/pub_detail",
-    "pages/pingjia/pingjia",
-    "pages/chakan_pingjia/chakan_pingjia",
     "pages/yijian/yijian",
-    "pages/search/search",
-    "pages/add_dizhi/add_dizhi"
+    "pages/search/search"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

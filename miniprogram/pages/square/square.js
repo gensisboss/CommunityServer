@@ -48,10 +48,8 @@ Page({
   },
   shuju:function(){
         let that = this;
-        
         if(that.data.tab=='闲置宝贝'){
             that.get();
-            
          }
          if(that.data.tab=='社区美食'){
            //获取待接单的单子列表
@@ -61,12 +59,23 @@ Page({
            //获取配送中的单子列表
             that.get_song();
          }
-         if(that.data.tab=='无限畅聊'){
+         if(that.data.tab=='我的发布'){
           //获取已完成的单子列表
            that.get_que();
          }
   },
 
+  fabu:function(e){
+    wx.navigateTo({
+      url: "/pages/fabu/fabu",
+    })
+  },
+
+  search:function(e){
+    wx.navigateTo({
+      url: "/pages/search/search",
+    })
+  },
 
 
   /**

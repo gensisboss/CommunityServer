@@ -10,15 +10,15 @@
 
 
 <view class="bang">
-     <view class="bang_1" bindtap="go" data-id="/pages/mai/mai">
+     <view class="bang_1" bindtap="daikaifa" data-id="/pages/mai/mai">
           <image src="../../images/bangmai.png"></image>
           <text>生活手册</text>
      </view>
-     <view class="bang_1" bindtap="go" data-id="/pages/song/song">
+     <view class="bang_1" bindtap="daikaifa" data-id="/pages/song/song">
           <image src="../../images/bangsong.png"></image>
           <text>社区周边</text>
      </view>
-     <view class="bang_1" bindtap="go" data-id="/pages/qu/qu">
+     <view class="bang_1" bindtap="daikaifa" data-id="/pages/qu/qu">
           <image src="../../images/bangqu.png"></image>
           <text>官方公告</text>
      </view>

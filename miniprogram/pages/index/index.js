@@ -2,7 +2,6 @@
 const app = getApp();
 const db = wx.cloud.database();
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -12,11 +11,11 @@ Page({
     banner:[{img:"../../images/ad1.jpg"},
             {img:"../../images/ad2.jpg"},
             {img:"../../images/ad3.jpg"}],
-    channel:'跑腿资讯',
+    channel:'推荐',
     list:[],//list是用来存放文章的数组
     nomore:false,
     page:0,
-    tongzhi:'',
+    tongzhi:'你还，欢迎',
   },
 
   /**
@@ -33,7 +32,6 @@ Page({
           console.log(res.data)
           //把缓存的openid赋给全局变量openid
           app.globalData.openid = res.data;
-         
         },
         fail(er){
           console.log('第一次进来')
@@ -62,7 +60,6 @@ Page({
       }
     })
   },
-  
   get_banner:function(){
     let that = this;
     db.collection('banner').limit(5).get({
@@ -106,7 +103,7 @@ Page({
     
      })
   },
-  //监听切换导航的变化（跑腿、财经）
+  //监听切换导航的变化（推荐、新闻）
   onChange(event) {
     console.log(event.detail.title)
     let that = this;
@@ -114,12 +111,12 @@ Page({
          channel:event.detail.title,
     })
     app.globalData.channel = event.detail.title;
-    if(that.data.channel=='跑腿资讯'){
+    if(that.data.channel=='推荐'){
         app.globalData.channel = event.detail.title
         //去查询获取数据库的文章列表
         that.get_cha();
     }
-    if(that.data.channel=='财经新闻'){
+    if(that.data.channel=='新闻'){
       app.globalData.channel = event.detail.title
       //通过请求第三方接口去获取财经新闻的列表
       that.get();
@@ -155,7 +152,7 @@ Page({
       url: '/pages/detail/detail?id='+content,
     })
   },
-  //获取财经新闻，一次就获取20条，想获取更多得调用gengduo()函数
+  //获取新闻，一次就获取20条，想获取更多得调用gengduo()函数
   get:function(){
     let that = this;
     wx.showLoading({
@@ -184,76 +181,7 @@ Page({
     })
   },
 
-  //获取更多的财经新闻
-  gengduo() {
-    let that = this;
-    if (that.data.nomore || that.data.list.length < 20) {
-      return false
-    }
-    if(that.data.channel=='推荐'){
-      let page = that.data.page + 1;
-      //经过上一句执行，page的值已经为1了，所以下面的page*20=20
-      db.collection('wenzhang').orderBy('_updateTime', 'desc').skip(page * 20).limit(20).get({
-            success: function(res) {
-                  if (res.data.length == 0) {
-                        that.setData({
-                              nomore: true
-                        })
-                        return false;
-                  }
-                  if (res.data.length < 20) {
-                        that.setData({
-                              nomore: true
-                        })
-                  }
-                  //取到成功后，都连接到旧数组，然后组成新数组
-                  that.setData({
-                        //这里的page为1，即新页面
-                        page: page,
-                        list: that.data.list.concat(res.data)
-                  })
-            },
-            fail() {
-                  wx.showToast({
-                        title: '获取失败',
-                        icon: 'none'
-                  })
-            }
-      })
-    }
-    if(that.data.channel=='新闻'){
-      let start = that.data.list.length;
-      wx.request({
-        url: 'https://api.jisuapi.com/news/get',
-        data:{
-          channel:'财经',
-          start:start,
-          num:20,
-          appkey:'4178edcb5e1ae9cf'
-        },
-        success:function(res){
-              console.log(res)
-              if(res.data.result.list.length<20||res.data.result.list.length==0){
-                that.setData({
-                  nomore:true,
-                })
-                
-              }
-              //继续赋值给list数组
-              that.setData({
-                 list:that.data.list.concat(res.data.result.list)
-              }) 
-              //暂停刷新
-              wx.stopPullDownRefresh();
-              wx.hideLoading()
-        },
-        fail(er){
-          console.log(er)
-        }
-      })
-    }
-  },
-  //跳转到帮我买、帮我送、帮我取、代取快递、代取外卖、其他跑腿
+
   go:function(e){
     console.log(e.currentTarget.dataset.id)
     wx.navigateTo({
@@ -268,7 +196,6 @@ Page({
       icon: 'none',
       duration: 2000
     })
-    
   },
 
 

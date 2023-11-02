@@ -1,133 +1,150 @@
-// pages/search/search.js
+// pages/secondhand/secondhand.js
+const app = getApp();
+const db = wx.cloud.database();
 Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+       list:[],
+       nomore:false,
+       page:0,
+  },
 
-    /**
-     * 页面的初始数据
-     */
-    data: {
-        inputValue:'', //输入框value值
-        noData:false, //暂无数据
-        carList:[],//搜索列表
-        history:false, //搜索记录
-        historyData:[], //历史记录列表
-    },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+      let that = this;
+     
+      wx.showLoading({
+        title: '加载中',
+      })
+      
+      
+  },
 
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad(options) {
-        var that = this
-        wx.getStorage({ //获取历史记录缓存
-          key: 'history', 
-          success(res) {
-            console.log(res.data)
-            if(res.data == ''){
-              that.setData({
-                history:false
-              })
-            }else{
-              that.setData({
-                historyData: res.data,
-                history:true
-              })
-            }
-          }
-        })
-    },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady() {
-
-    },
-
-    onSearch(e){
-        var that = this
-        if (e.detail.value == ''){ //输入框value为空
-          that.setData({
-            noData:false,
-            carList:'',
-            closeImg:false,
-            history:true
+  //搜索帖子
+  onSearch:function(event){
+    let that = this;
+    console.log(event.detail)
+    wx.showLoading({
+      title: '正在搜索',
+    })
+    db.collection('second').where({
+        search_name:db.RegExp({
+          regexp: '.*' + event.detail + '.*',
+          options: 'i',
+       })
+    }).orderBy('creat','desc').get({
+      success:function(res){
+            that.setData({
+               list:res.data
+            })
+            wx.hideLoading()
+      },
+      fail(er){
+           wx.hideLoading()
+           wx.showToast({
+            title: '搜索失败，请重试',
+            icon: 'none',
+            duration: 2000
           })
-        }else{ //输入框value不为空
-          that.setData({
-            closeImg: true,
-            history:false
-          })
-          $http.post('my/search_vehicles',{ //请求搜索接口
-            search: e.detail.value
-          }).then(res=>{
-            var resObj = res.data
-            if(resObj.code == 1){
-              //请求成功
-              console.log(resObj.data)
-              if (resObj.data){
-                that.setData({
-                  noData: false,
-                  carList: resObj.data.brandList
-                })
-              }else{
-                that.setData({
-                  noData:true
-                })
-              }
-            }else{
-              console.log('请求失败',resObj.msg)
-            }
-          }).catch(err=>{
-            console.log('异常回调',err)
-          })
-        }
-    },
+      }
+    })
+   
+  },
 
-    onCancel(){
-        var that = this
-        wx.switchTab({
-          url: '/pages/square/square'
-        })
-    },
 
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow() {
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
 
-    },
+  },
 
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide() {
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+      let that = this;
+     
+  },
 
-    },
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
 
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload() {
+  },
 
-    },
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
 
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh() {
+  },
 
-    },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
 
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage() {
-
+  },
+  //获取更多数据
+  get_more:function(){
+    let that = this;
+    if (that.data.nomore || that.data.list.length < 20) {
+      wx.showToast({
+        title: '没有更多了',
+      })
+      return false
     }
+    let page = that.data.page + 1;
+     
+      //经过上一句执行，page的值已经为1了，所以下面的page*20=20，下标20就是第21条记录
+      db.collection('second').where({
+         choose_campus:app.globalData.campus,
+      }).orderBy('creat', 'desc').skip(page * 20).limit(20).get({
+            success: function(res) {
+                  console.log(res)
+                  if (res.data.length == 0) {
+                        that.setData({
+                              nomore: true
+                        })
+                  }
+                  if (res.data.length < 20) {
+                        that.setData({
+                              nomore: true
+                        })
+                        //取到成功后，都连接到旧数组，然后组成新数组
+                        that.setData({
+                              //这里的page为1
+                              page: page,
+                              list: that.data.list.concat(res.data)
+                        })
+                  }
+            },
+            fail() {
+                  wx.showToast({
+                        title: '获取失败',
+                        icon: 'none'
+                  })
+            }
+      })
+  },
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+       let that = this;
+       that.get_more();
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
 })
