@@ -11,9 +11,7 @@
     "pages/dizhi/dizhi",
     "pages/recharge/recharge",
     "pages/reflect/reflect",
-    "pages/qu/qu",
-    "pages/mai/mai",
-    "pages/song/song",
+    "pages/fabu/fabu",
     "pages/other/other",
     "pages/secondhand/secondhand",
     "pages/second_fabu/second_fabu",
@@ -21,6 +19,7 @@
     "pages/pingjia/pingjia",
     "pages/chakan_pingjia/chakan_pingjia",
     "pages/yijian/yijian",
+    "pages/search/search",
     "pages/add_dizhi/add_dizhi"
   ],
   "window": {
