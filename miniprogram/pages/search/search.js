@@ -6,7 +6,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-       list:[],
+       list:[{avatarUrl:"../../images/head.png",
+            nickName:"微信用户",
+            phone:"18574176255",
+            creat:1698989493728,
+            notes:"一些描述",
+            fileList:[{url:"../../images/xianhua.jpg"},{url:"../../images/liwu.jpg"}]},
+          
+        ],
        nomore:false,
        page:0,
   },
@@ -17,10 +24,7 @@ Page({
   onLoad: function (options) {
       let that = this;
      
-      wx.showLoading({
-        title: '加载中',
-      })
-      
+
       
   },
 

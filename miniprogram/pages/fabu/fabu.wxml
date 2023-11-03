@@ -1,11 +1,8 @@
 <!--pages/fabu/fabu.wxml-->
-<van-cell title-class="ziti" title="标题" bind:click="popup_campus" value="{{choose_campus}}" is-link value-class="ziti" />
+<van-field value="{{title}}" bindinput="titleInput"  placeholder="请输入标题" label="标题" value-class="ziti" 
+/>
 
-<van-field value="{{ phone }}" placeholder="请获取手机号码" label="手机号码" readonly clearable label-class="ziti" placeholder-style="font-size:32rpx;" use-button-slot>
-    <van-button slot="button" custom-style="width:160rpx;font-size:25rpx" size="small" type="primary" open-type="getPhoneNumber" bind:getphonenumber="get_phone">
-        获取号码
-    </van-button>
-</van-field>
+<van-field value="{{ phone }}" bindinput="concatInput" placeholder="请输入你的联系方式" label="联系方式"label-class="ziti" />
 
 <view class="des">1. 温馨提示：请上传闲置物品图片，最多3张</view>
 <block wx:for="{{ fileList }}" wx:key="index">
@@ -20,14 +17,14 @@
 <view class="des">2. 请输入闲置物品相关说明</view>
 <view class="b_notes">
     <view class="b_text">
-        <textarea value="{{notes}}" bindinput="noteInput" maxlength="50" placeholder="请输入闲置物品相关说明，比如：九成新相机..."></textarea>
+        <textarea value="{{notes}}" bindinput="noteInput" maxlength="50" placeholder="请输入闲置物品相关说明"></textarea>
         <view class="b_less">{{note_counts}}/50</view>
     </view>
 </view>
 <view class="des">3. 请输入闲置物品标签，标签之间用<text style="color: red;">中文逗号，</text>隔开</view>
 <view class="b_notes">
     <view class="b_text">
-        <textarea value="{{zifu}}" bindinput="zifuInput" maxlength="15" placeholder="例如：二手相机，高清拍摄"></textarea>
+        <textarea value="{{zifu}}" bindinput="zifuInput" maxlength="15" placeholder="例如：二手相机，桌子"></textarea>
         <view class="b_less">{{zifu_counts}}/15</view>
     </view>
 </view>

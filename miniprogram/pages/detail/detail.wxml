@@ -1,15 +1,25 @@
 <!--pages/detail/detail.wxml-->
-<block wx:if="{{show==1}}">
-  <view class="detail">
-    <rich-text nodes="{{content}}"></rich-text> 
-  </view>
-</block>
-<block wx:if="{{show==2}}">
-  <image style="width: 50%;height: 200rpx;border-radius: 20rpx;margin-left: 25%;" src="https://636c-cloud1-7gfkdvn4d13b54c9-1306992154.tcb.qcloud.la/read.gif?sign=1dfce0a6d457960fb78a3aa8919449b4&t=1630646272"></image>
-  <view class="detail">
-      <rich-text nodes="{{Url}}"></rich-text>
-  </view>
-</block>
+<view class="content">
+    <!-- 头像 -->
+    <view class="author-date">
+        <image src="../../images/head.png" class="author"></image>
+        <text class="date">logo 2017年七月</text>
+    </view>
+    <!-- 文章内容 -->
+    <view>
+        <text class="article-title">那年夏天你在哪里\n</text>
+        <image class="article-image" src="../../images/xianhua.jpg"></image>
+        <text class="article-content">天不言自高，地不言自厚，奇迹，是不会在容易的道路上绽放的。人生没有如果，只有后果和结果，过去的不再回来，回来的不再完美。</text>
+       
+    </view>
+
+    <view>
+        <image class="small-images" src="../../images/browse.png"></image>
+        <text class="small-text">66</text>
+        <image class="small-images" src="../../images/like.png"></image>
+        <text class="small-text">88</text>
+    </view>
+</view>
 
 
 
@@ -18,4 +28,3 @@
 <!-- <block wx:if="{{show==2}}">
   <web-view src="{{url}}"></web-view>
 </block> -->
-

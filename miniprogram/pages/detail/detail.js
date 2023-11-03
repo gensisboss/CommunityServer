@@ -18,24 +18,6 @@ Page({
   onLoad: function (options) {
         let that = this;
         
-        if(app.globalData.channel=="跑腿资讯"){
-            that.setData({
-              show:1,
-            })
-            //去查询数据库文章表，获取相应的文章数据,同时把id值传给get函数，用于条件查询
-            that.get(options.id)
-        }
-       
-        if(app.globalData.channel=="财经新闻"){
-          that.setData({
-            show:2,
-            url:decodeURIComponent(options.id),
-          })
-          //以下是处理无法显示图片的问题
-          that.setData({
-             Url:that.data.url.replace(/<figure class="art_img_mini j_p_gallery">/g,"").replace(/\<img/gi, '<img style=max-width:90%;height:200rpx;margin-left:5%;').replace(/<p/g,'<p style=font-size:30rpx;')
-          })
-        }
   },
   //获取文章数据
   get:function(e){

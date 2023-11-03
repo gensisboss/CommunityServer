@@ -49,19 +49,19 @@ Page({
   shuju:function(){
         let that = this;
         if(that.data.tab=='闲置宝贝'){
-            that.get();
+           
          }
          if(that.data.tab=='社区美食'){
            //获取待接单的单子列表
-            that.get_dai();
+           
          }
          if(that.data.tab=='工作推荐'){
            //获取配送中的单子列表
-            that.get_song();
+           
          }
          if(that.data.tab=='我的发布'){
           //获取已完成的单子列表
-           that.get_que();
+         
          }
   },
 
@@ -89,7 +89,7 @@ Page({
           app.globalData.screenHeight = res.screenHeight;
           this.setData({
             x : `${app.globalData.screenWidth-50}px`,
-            y : `${app.globalData.screenHeight-200}px`
+            y : `${app.globalData.screenHeight-300}px`
         })
         },
         fail(err) {
@@ -145,9 +145,16 @@ Page({
   * 拖拽移动
   */
  handleTouchMove: function (e) {
+    let posY = e.detail.y;
+    if(posY > app.globalData.screenHeight-200){
+        posY = app.globalData.screenHeight-200;
+    }
+    if(posY < 100){
+        posY = 100;
+    }
     this.setData({
         mx : e.detail.x,
-        my : e.detail.y
+        my : posY
     })
  },
 

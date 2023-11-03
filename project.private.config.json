@@ -12,8 +12,8 @@
                     "query": ""
                 },
                 {
-                    "name": "闲置物品",
-                    "pathName": "pages/secondhand/secondhand",
+                    "name": "详细信息",
+                    "pathName": "pages/detail/detail",
                     "query": "",
                     "launchMode": "default",
                     "scene": null
