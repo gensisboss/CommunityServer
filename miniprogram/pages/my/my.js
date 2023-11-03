@@ -22,36 +22,7 @@ Page({
        
   },
 
-  //查询该用户的交押金认证状态
-  get:function(){
-    let that = this;
-    db.collection('runner').where({
-        _openid:app.globalData.openid,
-    }).get({
-      success:function(res){
-           //还没提交信息
-           if(res.data.length==0){
-                //不做任何处理
-           }
-           if(res.data.length!==0){
-              //有但还没有审核通过或者违规无权限
-              if(res.data[0].pass==false){
-                  that.setData({
-                    show:2,
-                    renzheng:'正在审核'
-                  })
-              }
-              //有而且审核通过
-              if(res.data[0].pass==true){
-                 that.setData({
-                   show:3,
-                   renzheng:'已认证'
-                 })
-              }
-           }
-      }
-    })
-  },
+
  
   /**
    * 生命周期函数--监听页面初次渲染完成

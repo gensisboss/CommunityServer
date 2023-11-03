@@ -1,4 +1,4 @@
-/* pages/second_fabu/second_fabu.wxss */
+/* pages/fabu/fabu.wxss */
 
 .submit{
   display: flex;

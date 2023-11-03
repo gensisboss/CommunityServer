@@ -7,35 +7,19 @@
     <view class="tiezi">
         <view class="tiezi_left">
             <view class="round">
-                <image src="{{item.avatarUrl}}"></image>
+                <image src="{{item.fileList[0].url}}"></image>
             </view>
         </view>
         <view class="tiezi_right">
             <view class="right_top">
-                <view class="top">
-                    <view class="top1">
-                        <view>{{item.nickName}}</view>
-                        <view>{{morejs.timelog(item.creat)}}发布</view>
-                    </view>
-                    <view class="top2">
-                        <van-button size="mini" bind:click="make_phone" data-phone="{{item.phone}}" custom-style="width:100rpx;margin-right: 10rpx;" type="info">联系</van-button>
-                    </view>
-                </view>
+                <text>{{item.title}}</text>
             </view>
             <view class="right_center">
-                <view class="center1">
-                    {{item.notes}}
-                </view>
-                <view class="center2">
-                    <block wx:for="{{item.fileList}}" wx:key="index">
-                        <image bindtap="yulan_img" data-img="{{item.url}}" src="{{item.url}}"></image>
-                    </block>
-                </view>
+                <image src="{{item.avatarUrl}}"></image>
+                <text>{{item.nickName}}</text>
             </view>
             <view class="right_bottom">
-                <block wx:for="{{item.biaoqian}}" wx:key="index">
-                    <van-button size="mini" custom-style="width:100rpx;margin-left: 10rpx;" plain type="info">{{item}}</van-button>
-                </block>
+                <text>{{morejs.timelog(item.creat)}}发布</text>
             </view>
 
         </view>

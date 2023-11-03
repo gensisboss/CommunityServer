@@ -1,19 +1,22 @@
 <!--pages/detail/detail.wxml-->
-<view class="content">
+<view class="detail">
     <!-- 头像 -->
-    <view class="author-date">
-        <image src="../../images/head.png" class="author"></image>
-        <text class="date">logo 2017年七月</text>
+    <view class="author">
+        <view class="author-left">
+            <image src="../../images/head.png" class="author-icon"></image>
+            <text class="author-name">微信用户</text>
+        </view>
+        <text class="author-date">2017年七月</text>
     </view>
     <!-- 文章内容 -->
     <view>
-        <text class="article-title">那年夏天你在哪里\n</text>
+        <text class="article-title">那年夏天你在哪里</text>
         <image class="article-image" src="../../images/xianhua.jpg"></image>
-        <text class="article-content">天不言自高，地不言自厚，奇迹，是不会在容易的道路上绽放的。人生没有如果，只有后果和结果，过去的不再回来，回来的不再完美。</text>
-       
+        <text class="article-content">天不言自高，地不言自厚，奇迹，是不会在容易的道路上绽放的。人生没有如果，只有后果和结果，过去的不再回来，回来的不再完美。\n</text>
+        <text class="article-concat">联系方式：18436383</text>
     </view>
 
-    <view>
+    <view class="small">
         <image class="small-images" src="../../images/browse.png"></image>
         <text class="small-text">66</text>
         <image class="small-images" src="../../images/like.png"></image>
@@ -21,10 +24,3 @@
     </view>
 </view>
 
-
-
-
-<!--以下是行不通的，域名必须是自己有的，不然即使是企业用户，也无法使用web-view组件-->
-<!-- <block wx:if="{{show==2}}">
-  <web-view src="{{url}}"></web-view>
-</block> -->

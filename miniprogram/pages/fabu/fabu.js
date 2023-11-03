@@ -1,4 +1,4 @@
-// pages/second_fabu/second_fabu.js
+// pages/fabu/fabu.js
 const app = getApp();
 const db = wx.cloud.database();
 Page({
@@ -14,9 +14,6 @@ Page({
         linshi: [],  //存放图片的临时地址
 
         phone: '',
-        zifu: '',
-        zifu_counts: 0,
-        biaoqian: [],
 
         avatarUrl: '',
         nickName: '',
@@ -74,7 +71,7 @@ Page({
         }
         if (that.data.phone == '') {
             wx.showToast({
-                title: '请获取手机号码',
+                title: '请输入手机号码',
                 icon: 'none',
                 duration: 2000
             })
@@ -96,30 +93,9 @@ Page({
             })
             return false;
         }
-        if (that.data.zifu == '') {
-            wx.showToast({
-                title: '请输入至少一个标签',
-                icon: 'none',
-                duration: 2000
-            })
-            return false;
-        }
-        that.get_biaoqian();
+        return true
     },
-    //处理标签
-    get_biaoqian: function () {
-        let that = this;
-        wx.showLoading({
-            title: '正在发布',
-        })
-        console.log(that.data.zifu.split("，"))
-        let zifu_arr = that.data.zifu.split("，")
-        that.setData({
-            biaoqian: that.data.biaoqian.concat(zifu_arr)
-        })
-        console.log(that.data.biaoqian)
-        that.add_second();
-    },
+
     add_second: function () {
         let that = this;
         db.collection('second').add({
@@ -232,7 +208,7 @@ Page({
             fileList: that.data.fileList,
         })
     },
-    //获取用户输入的联系方式
+    //获取用户输入的标题
     titleInput(e) {
         let that = this;
         console.log(e.detail.cursor)
@@ -241,7 +217,8 @@ Page({
             title: e.detail.value,
         })
     },
-    //获取用户输入的标题
+    
+    //获取用户输入的联系方式
     concatInput(e) {
         let that = this;
         console.log(e.detail.cursor)
@@ -259,14 +236,7 @@ Page({
             notes: e.detail.value,
         })
     },
-    zifuInput(e) {
-        let that = this;
-        console.log(e.detail.cursor)
-        that.setData({
-            zifu_counts: e.detail.cursor,
-            zifu: e.detail.value,
-        })
-    },
+ 
 
     /**
      * 生命周期函数--监听页面初次渲染完成

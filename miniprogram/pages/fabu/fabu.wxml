@@ -21,13 +21,7 @@
         <view class="b_less">{{note_counts}}/50</view>
     </view>
 </view>
-<view class="des">3. 请输入闲置物品标签，标签之间用<text style="color: red;">中文逗号，</text>隔开</view>
-<view class="b_notes">
-    <view class="b_text">
-        <textarea value="{{zifu}}" bindinput="zifuInput" maxlength="15" placeholder="例如：二手相机，桌子"></textarea>
-        <view class="b_less">{{zifu_counts}}/15</view>
-    </view>
-</view>
+
 <view class="submit">
     <van-button round size="small" color="#7232dd" bind:click="getUserProfile">立即发布</van-button>
 </view>

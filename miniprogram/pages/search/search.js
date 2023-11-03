@@ -10,6 +10,7 @@ Page({
             nickName:"微信用户",
             phone:"18574176255",
             creat:1698989493728,
+            title:"物品标题",
             notes:"一些描述",
             fileList:[{url:"../../images/xianhua.jpg"},{url:"../../images/liwu.jpg"}]},
           

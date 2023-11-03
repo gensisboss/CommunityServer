@@ -38,6 +38,13 @@
                     "query": "",
                     "launchMode": "default",
                     "scene": null
+                },
+                {
+                    "name": "修改资料",
+                    "pathName": "pages/ziliao/ziliao",
+                    "query": "",
+                    "launchMode": "default",
+                    "scene": null
                 }
             ]
         }
