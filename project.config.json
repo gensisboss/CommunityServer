@@ -38,7 +38,7 @@
         "condition": false
     },
     "appid": "wx5a274d039ddc31a8",
-    "projectname": "xiaoyuan_paotui",
+    "projectname": "communityServer",
     "libVersion": "2.19.2",
     "cloudfunctionTemplateRoot": "cloudfunctionTemplate/",
     "condition": {
