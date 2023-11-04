@@ -16,10 +16,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-       let that = this;
-       //查询用户的接单认证状态，是否显示认证标志
-       that.get();
-       
   },
 
 
@@ -36,7 +32,6 @@ Page({
    */
   onShow: function () {
         let that = this;
-        that.get();
         that.setData({
           _openid:app.globalData.openid
         })

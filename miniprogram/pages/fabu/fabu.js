@@ -25,7 +25,6 @@ Page({
      */
     onLoad: function (options) {
         let that = this;
-        that.get_campus();
     },
     getUserProfile(e) {
         // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
