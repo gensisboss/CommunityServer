@@ -64,7 +64,8 @@
     "van-slider": "vant/slider/index",
     "van-dropdown-menu": "vant/dropdown-menu/index",
     "van-dropdown-item": "vant/dropdown-item/index",
-    "van-rate": "vant/rate/index"
+    "van-rate": "vant/rate/index",
+    "van-item":"vant/item/index"
   },
   "permission": {
     "scope.userLocation": {

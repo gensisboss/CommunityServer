@@ -6,7 +6,6 @@
     </view>
 </view>
 
-<wxs src="../../common.wxs" module="morejs" />
 <van-tabs active="{{ active }}" bind:change="onChange" custom-class="wen">
   <van-tab title="闲置宝贝">
             <block wx:if="{{list.length==0}}">

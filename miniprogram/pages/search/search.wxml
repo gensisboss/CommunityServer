@@ -1,29 +1,10 @@
 <!--pages/secondhand/secondhand.wxml-->
-<wxs src="../../common.wxs" module="morejs" />
+
 
 <van-search value="{{ value }}" placeholder="请输入搜索关键词" bind:search="onSearch" bind:cancel="onCancel" />
 
 <block wx:if="{{list.length!==0}}" wx:for="{{list}}" wx:key="index">
-    <view class="tiezi">
-        <view class="tiezi_left">
-            <view class="round">
-                <image src="{{item.fileList[0].url}}"></image>
-            </view>
-        </view>
-        <view class="tiezi_right">
-            <view class="right_top">
-                <text>{{item.title}}</text>
-            </view>
-            <view class="right_center">
-                <image src="{{item.avatarUrl}}"></image>
-                <text>{{item.nickName}}</text>
-            </view>
-            <view class="right_bottom">
-                <text>{{morejs.timelog(item.creat)}}发布</text>
-            </view>
-
-        </view>
-    </view>
+    <van-item bindcustomevent="showDetail" item = '{{item}}'></van-item>
 </block>
 
 <block wx:if="{{list.length==0}}">

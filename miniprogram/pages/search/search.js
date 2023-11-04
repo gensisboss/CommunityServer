@@ -1,4 +1,4 @@
-// pages/secondhand/secondhand.js
+// pages/search/search.js
 const app = getApp();
 const db = wx.cloud.database();
 Page({
@@ -13,7 +13,6 @@ Page({
             title:"物品标题",
             notes:"一些描述",
             fileList:[{url:"../../images/xianhua.jpg"},{url:"../../images/liwu.jpg"}]},
-          
         ],
        nomore:false,
        page:0,
@@ -23,10 +22,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      let that = this;
      
-
-      
   },
 
   //搜索帖子
@@ -58,6 +54,12 @@ Page({
       }
     })
    
+  },
+
+  showDetail:function(event){
+    wx.navigateTo({
+        url: "/pages/detail/detail",
+      })
   },
 
 

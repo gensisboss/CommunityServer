@@ -1,0 +1,23 @@
+<!--components/item.wxml-->
+<wxs src="../../common.wxs" module="morejs" />
+
+<view bindtap="onTap" class="tiezi">
+        <view class="tiezi_left">
+            <view class="round">
+                <image src="{{item.fileList[0].url}}"></image>
+            </view>
+        </view>
+        <view class="tiezi_right">
+            <view class="right_top">
+                <text>{{item.title}}</text>
+            </view>
+            <view class="right_center">
+                <image src="{{item.avatarUrl}}"></image>
+                <text>{{item.nickName}}</text>
+            </view>
+            <view class="right_bottom">
+                <text>{{morejs.timelog(item.creat)}}发布</text>
+            </view>
+
+        </view>
+    </view>
