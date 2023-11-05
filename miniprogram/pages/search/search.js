@@ -6,14 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-       list:[{avatarUrl:"../../images/head.png",
-            nickName:"微信用户",
-            phone:"18574176255",
-            creat:1698989493728,
-            title:"物品标题",
-            notes:"一些描述",
-            fileList:[{url:"../../images/xianhua.jpg"},{url:"../../images/liwu.jpg"}]},
-        ],
+       list:[],
        nomore:false,
        page:0,
   },
@@ -57,6 +50,7 @@ Page({
   },
 
   showDetail:function(event){
+    app.globalData.detailData = event.detail.data;
     wx.navigateTo({
         url: "/pages/detail/detail",
       })

@@ -16,6 +16,8 @@ Page({
         avatarUrl: '',
         nickName: '',
         userInfo: '',
+
+        type:''
     },
 
     /**
@@ -25,8 +27,6 @@ Page({
        
     },
     getUserProfile(e) {
-        // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
-        // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
         let that = this;
         if (that.data.userInfo !== '') {
             that.check();
@@ -55,6 +55,15 @@ Page({
 
     },
 
+    chooseTab:function(e){
+        console.log("当前选择种类",e.currentTarget.dataset.id)
+        let that = this;
+        that.setData({
+            type : e.currentTarget.dataset.id
+        })
+        that.type = e.currentTarget.dataset.id;
+        console.log("当前发布种类",that.type);
+    },
 
     check: function () {
         let that = this;
@@ -68,7 +77,7 @@ Page({
         }
         if (that.data.phone == '') {
             wx.showToast({
-                title: '请输入手机号码',
+                title: '请输入你的联系方式',
                 icon: 'none',
                 duration: 2000
             })
@@ -90,12 +99,20 @@ Page({
             })
             return false;
         }
+        if (that.data.type == '') {
+            wx.showToast({
+                title: '请选择种类',
+                icon: 'none',
+                duration: 2000
+            })
+            return false;
+        }
         that.fabu();
     },
 
     fabu: function () {
         let that = this;
-        db.collection('second').add({
+        db.collection(that.type).add({
             data: {
                 title: that.data.title,
                 phone: that.data.phone,

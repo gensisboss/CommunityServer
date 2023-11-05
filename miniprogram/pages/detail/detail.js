@@ -1,55 +1,38 @@
 // pages/detail/detail.js
 const app = getApp();
-const db = wx.cloud.database();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-        show:1,
-        url:'',
-        content:'',
+        title: '',
+        notes: '',
+        fileList: [],
+        phone: '',
+        avatarUrl: '',
+        nickName: '',
+        creat: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-        let that = this;
-        
-  },
-  //获取文章数据
-  get:function(e){
-    let that = this;
-    
-    db.collection('wenzhang').where({
-       _id:e,
-    }).get({
-      success:function(res){
-          //使用replace方法去替换富文本下面的各种节点，以达到插入样式的效果
-          let Content = res.data[0].content.replace(/\<img/gi, '<img style=max-width:90%;height:200rpx;margin-left:5%;')
-          that.setData({
-              content:Content,
-          })
-      },
-      fail(){
-        //提示用户获取文章失败
-        wx.showToast({
-          title: '获取文章失败',
-          icon: 'error',
-          duration: 2000
+        console.log("界面数据",app.globalData.detailData)
+        let data = app.globalData.detailData;
+        this.setData({
+            title : data.title,
+            notes : data.notes,
+            fileList : data.fileList,
+            phone : data.phone,
+            avatarUrl : data.avatarUrl,
+            nickName : data.nickName,
+            creat : data.creat  
         })
-        //1秒后跳转回主页
-        setTimeout(function(){
-          wx.navigateBack({
-            delta: 0,
-          })
-        },1000)
-        
-      }
-    })
+          
   },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -15,7 +15,8 @@ VantComponent({
   },
   methods: {
     onTap(event) {
-      this.triggerEvent('customevent', {}) 
+      let that = this;
+      that.triggerEvent('customevent', {data : that.data.item}) 
     },
   },
 });

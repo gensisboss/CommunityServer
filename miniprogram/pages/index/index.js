@@ -15,7 +15,7 @@ Page({
     list:[],//list是用来存放文章的数组
     nomore:false,
     page:0,
-    tongzhi:'你还，欢迎',
+    tongzhi:'你还，欢迎来到河马公舍二手交易平台',
   },
 
   /**

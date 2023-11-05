@@ -79,3 +79,39 @@
   letter-spacing: 2rpx;
   color: #8c9aa8;
 }
+
+.tabs {
+    width: 60%;
+    padding: 10rpx;
+    display: flex;
+    margin-left: 20rpx;
+    box-sizing: border-box;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: 50rpx;
+    border-radius: 10rpx;
+    margin-left: 10rpx;
+    background: rgb(238, 238, 238);
+}
+
+.tab-normal{
+    text-align: center;
+    vertical-align: middle;
+    font-size: 28rpx;
+    color: #acacac;
+}
+
+.tab-select{
+    text-align: center;
+    vertical-align: middle;
+    font-size: 28rpx;
+    color: #acacac;
+    border: 1px solid #000000;
+    padding: 5rpx;
+    border-radius: 10rpx;
+}

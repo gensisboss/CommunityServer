@@ -7,35 +7,42 @@
 </view>
 
 <van-tabs active="{{ active }}" bind:change="onChange" custom-class="wen">
-  <van-tab title="闲置宝贝">
-            <block wx:if="{{list.length==0}}">
-                  <van-empty description="空空如也" />
-            </block>
-  </van-tab>
-  <van-tab title="社区美食">
-            <block wx:if="{{list.length==0}}">
-                  <van-empty description="空空如也" />
-            </block>
-        
-  </van-tab>
-  <van-tab title="工作推荐">
-            <block wx:if="{{list.length==0}}">
-                  <van-empty description="空空如也" />
-            </block>
-        
-  </van-tab>
-  <van-tab title="我的发布">
-            <block wx:if="{{list.length==0}}">
-                  <van-empty description="空空如也" />
-            </block>
-        
-  </van-tab>
+    <van-tab title="闲置宝贝">
+        <block wx:if="{{list.length!==0}}" wx:for="{{list}}" wx:key="index">
+            <van-item bindcustomevent="showDetail" item='{{item}}'></van-item>
+        </block>
+        <block wx:if="{{list.length==0}}">
+            <van-empty description="空空如也" />
+        </block>
+    </van-tab>
+    <van-tab title="社区美食">
+        <block wx:if="{{list.length!==0}}" wx:for="{{list}}" wx:key="index">
+            <van-item bindcustomevent="showDetail" item='{{item}}'></van-item>
+        </block>
+        <block wx:if="{{list.length==0}}">
+            <van-empty description="空空如也" />
+        </block>
+    </van-tab>
+    <van-tab title="工作推荐">
+        <block wx:if="{{list.length!==0}}" wx:for="{{list}}" wx:key="index">
+            <van-item bindcustomevent="showDetail" item='{{item}}'></van-item>
+        </block>
+        <block wx:if="{{list.length==0}}">
+            <van-empty description="空空如也" />
+        </block>
+    </van-tab>
+    <van-tab title="我的发布">
+        <block wx:if="{{list.length!==0}}" wx:for="{{list}}" wx:key="index">
+            <van-item bindcustomevent="showDetail" item='{{item}}'></van-item>
+        </block>
+        <block wx:if="{{list.length==0}}">
+            <van-empty description="空空如也" />
+        </block>
+    </van-tab>
 </van-tabs>
 
 <movable-area class="movable-area">
-<movable-view x="{{x}}" y="{{y}}"  animation="{{false}}" class="movable-view" direction='all' catchtap="fabu" bindtouchend="handleTouchEnd" bindchange="handleTouchMove">
-   <image style="width: 80rpx;height: 80rpx;"  fit="cover" mode="scaleToFill" src="../../images/fabu2.png"></image>
-</movable-view>
+    <movable-view x="{{x}}" y="{{y}}" animation="{{false}}" class="movable-view" direction='all' catchtap="fabu" bindtouchend="handleTouchEnd" bindchange="handleTouchMove">
+        <image style="width: 80rpx;height: 80rpx;" fit="cover" mode="scaleToFill" src="../../images/fabu2.png"></image>
+    </movable-view>
 </movable-area>
-
-

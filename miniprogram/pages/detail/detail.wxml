@@ -1,19 +1,23 @@
 <!--pages/detail/detail.wxml-->
+<wxs src="../../common.wxs" module="morejs" />
 <view class="detail">
     <!-- 头像 -->
     <view class="author">
         <view class="author-left">
-            <image src="../../images/head.png" class="author-icon"></image>
-            <text class="author-name">微信用户</text>
+            <image src="{{avatarUrl}}" class="author-icon"></image>
+            <text class="author-name">{{nickName}}</text>
         </view>
-        <text class="author-date">2017年七月</text>
+        <text class="author-date">{{morejs.timelog(creat)}}</text>
     </view>
     <!-- 文章内容 -->
     <view>
-        <text class="article-title">那年夏天你在哪里</text>
-        <image class="article-image" src="../../images/xianhua.jpg"></image>
-        <text class="article-content">天不言自高，地不言自厚，奇迹，是不会在容易的道路上绽放的。人生没有如果，只有后果和结果，过去的不再回来，回来的不再完美。\n</text>
-        <text class="article-concat">联系方式：18436383</text>
+        <text class="article-title">{{title}}</text>
+        <block wx:for="{{fileList}}" wx:key="index">
+            <image class="article-image" src="{{item.url}}"></image>
+        </block>
+       
+        <text class="article-content">{{notes}}\n</text>
+        <text class="article-concat">联系方式：{{phone}}</text>
     </view>
 
     <view class="small">
