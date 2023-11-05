@@ -12,9 +12,7 @@ Page({
         multiple: true,
         fileList: [],
         linshi: [],  //存放图片的临时地址
-
         phone: '',
-
         avatarUrl: '',
         nickName: '',
         userInfo: '',
@@ -24,7 +22,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        let that = this;
+       
     },
     getUserProfile(e) {
         // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
@@ -92,10 +90,10 @@ Page({
             })
             return false;
         }
-        return true
+        that.fabu();
     },
 
-    add_second: function () {
+    fabu: function () {
         let that = this;
         db.collection('second').add({
             data: {
@@ -103,9 +101,8 @@ Page({
                 phone: that.data.phone,
                 fileList: that.data.fileList,
                 notes: that.data.notes,
-                biaoqian: that.data.biaoqian,
                 creat: new Date().getTime(),
-                search_name: that.data.zifu + that.data.notes,
+                search_name:  that.data.title,
                 avatarUrl: that.data.avatarUrl,
                 nickName: that.data.nickName,
             },
@@ -139,7 +136,7 @@ Page({
         let that = this;
 
         wx.chooseImage({
-            count: 9,
+            count: 3,
             sizeType: ['original', 'compressed'],
             sourceType: ['album', 'camera'],
             success(res) {
@@ -193,7 +190,7 @@ Page({
         let that = this;
         console.log(event)
         wx.previewImage({
-            urls: [event.currentTarget.dataset.url] // 需要预览的图片http链接列表
+            urls: [event.currentTarget.dataset.url] 
         })
     },
     //删除图片
@@ -210,26 +207,24 @@ Page({
     //获取用户输入的标题
     titleInput(e) {
         let that = this;
-        console.log(e.detail.cursor)
+        console.log("标题",e.detail)
         that.setData({
-            note_counts: e.detail.cursor,
-            title: e.detail.value,
+            title: e.detail,
         })
     },
     
     //获取用户输入的联系方式
     concatInput(e) {
         let that = this;
-        console.log(e.detail.cursor)
+        console.log("联系方式",e.detail)
         that.setData({
-            note_counts: e.detail.cursor,
-            phone: e.detail.value,
+            phone: e.detail,
         })
     },
     //获取用户输入的闲置物品相关内容
     noteInput(e) {
         let that = this;
-        console.log(e.detail.cursor)
+        console.log("物品说明",e.detail.cursor)
         that.setData({
             note_counts: e.detail.cursor,
             notes: e.detail.value,

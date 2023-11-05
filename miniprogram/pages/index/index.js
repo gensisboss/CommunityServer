@@ -239,7 +239,6 @@ Page({
    */
   onReachBottom: function () {
     //触底了就触发gengduo函数，去获取更多数据
-    this.gengduo();
   },
 
   /**

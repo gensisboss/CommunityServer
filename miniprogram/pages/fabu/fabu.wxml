@@ -1,8 +1,7 @@
 <!--pages/fabu/fabu.wxml-->
-<van-field value="{{title}}" bindinput="titleInput"  placeholder="请输入标题" label="标题" value-class="ziti" 
-/>
+<van-field value="{{title}}" bindinput="titleInput"  placeholder="请输入标题" label="标题" />
 
-<van-field value="{{ phone }}" bindinput="concatInput" placeholder="请输入你的联系方式" label="联系方式"label-class="ziti" />
+<van-field value="{{phone}}" bindinput="concatInput" placeholder="请输入你的联系方式" label="联系方式" />
 
 <view class="des">1. 温馨提示：请上传闲置物品图片，最多3张</view>
 <block wx:for="{{ fileList }}" wx:key="index">
@@ -11,14 +10,14 @@
         <image bindtap="previewImage" data-url="{{item.url}}" src="{{item.url}}"></image>
     </view>
 </block>
-<image wx:if="{{fileList.length<9}}" bindtap="uploadToCloud" style="width: 200rpx;height: 200rpx;" src="/images/xiangji.png"></image>
+<image wx:if="{{fileList.length<3}}" bindtap="uploadToCloud" style="width: 200rpx;height: 200rpx;" src="/images/xiangji.png"></image>
 
 
 <view class="des">2. 请输入闲置物品相关说明</view>
 <view class="b_notes">
     <view class="b_text">
-        <textarea value="{{notes}}" bindinput="noteInput" maxlength="50" placeholder="请输入闲置物品相关说明"></textarea>
-        <view class="b_less">{{note_counts}}/50</view>
+        <textarea value="{{notes}}" bindinput="noteInput" maxlength="100" placeholder="请输入闲置物品相关说明"></textarea>
+        <view class="b_less">{{note_counts}}/100</view>
     </view>
 </view>
 

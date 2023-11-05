@@ -35,10 +35,7 @@
   z-index: 5;
 }
 
-.ziti{
-  font-size: 32rpx;
-  margin-top: 10rpx;
-}
+
 .des {
   padding-left: 40rpx;
   padding-top: 20rpx;

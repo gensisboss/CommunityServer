@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-         tab:'全部',
+         tab:'闲置宝贝',
          list:[],
          nomore:false,
          page:0,
@@ -52,15 +52,12 @@ Page({
            
          }
          if(that.data.tab=='社区美食'){
-           //获取待接单的单子列表
            
          }
          if(that.data.tab=='工作推荐'){
-           //获取配送中的单子列表
            
          }
          if(that.data.tab=='我的发布'){
-          //获取已完成的单子列表
          
          }
   },
@@ -138,7 +135,6 @@ Page({
    */
   onReachBottom: function () {
     //触底了就触发gengduo函数，去获取更多数据
-    this.gengduo();
   },
 
   /**
