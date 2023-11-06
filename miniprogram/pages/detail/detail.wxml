@@ -20,11 +20,16 @@
         <text class="article-concat">联系方式：{{phone}}</text>
     </view>
 
-    <view class="small">
+    <view class="{{isMy ? 'small-center' : 'small-end'}}">
+    <view wx:if="{{isMy}}"> 
+        <image class="small-images" src="../../images/delete.png"></image>
+        <text bindtap="deleteItem" class="small-text">删除</text>
+    </view>
+    <view>
         <image class="small-images" src="../../images/browse.png"></image>
         <text class="small-text">66</text>
-        <image class="small-images" src="../../images/like.png"></image>
-        <text class="small-text">88</text>
+    </view>
+       
     </view>
 </view>
 

@@ -29,6 +29,7 @@ Page({
             success(res) {
                 //把缓存的openid赋给全局变量openid
                 app.globalData.openid = res.data;
+                console.log("玩家的openid",res)
             },
             fail(er) {
                 //第一次进来没有这个openid缓存，可以获取存进去
@@ -59,7 +60,6 @@ Page({
         let that = this;
         db.collection('banner').limit(3).get({
             success: function (res) {
-                console.log("banner数据", res)
                 that.setData({
                     banner: res.data,
                 })

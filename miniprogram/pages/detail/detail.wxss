@@ -27,6 +27,7 @@
     width: 60rpx;
     height: 60rpx;
     vertical-align: middle;
+    border-radius: 30rpx;
 }
 
 .author-name {
@@ -48,6 +49,7 @@
     margin-left: 30rpx;
     font-weight: 600;
     color: #333;
+
 }
 
 .article-image {
@@ -77,11 +79,30 @@
     letter-spacing: 2rpx;
 }
 
-.small {
+.small-center {
+    margin-left: 20rpx;
+    width: 95%;
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.small-end {
+    margin-left: 20rpx;
     width: 95%;
     height: 20%;
     display: flex;
     justify-content: flex-end;
+}
+
+
+.small-btn {
+    width: 50px;
+    height: 30px;
+    font-size: 30rpx;
+    color: #FF0000;
+    margin-left: 5px;
+    vertical-align: middle;
 }
 
 .small-images {

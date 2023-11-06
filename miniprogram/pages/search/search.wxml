@@ -4,7 +4,7 @@
 <van-search value="{{ value }}" placeholder="请输入搜索关键词" bind:search="onSearch" bind:cancel="onCancel" />
 
 <block wx:if="{{list.length!==0}}" wx:for="{{list}}" wx:key="index">
-    <van-item bindcustomevent="showDetail" item = '{{item}}'></van-item>
+    <item bindcustomevent="showDetail" item = '{{item}}'></item>
 </block>
 
 <block wx:if="{{list.length==0}}">

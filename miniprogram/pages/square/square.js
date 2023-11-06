@@ -2,19 +2,17 @@
 const app = getApp();
 const db = wx.cloud.database();
 Page({
-
     /**
      * 页面的初始数据
      */
     data: {
         tab: '闲置宝贝',
-        base:'second',
+        base: 'second',
         list: [],
         page: 0,
 
         //浮窗
-        mx: 0,
-        my: 0,
+        offsety: 0,
         x: "500px",
         y: "600px",
 
@@ -26,8 +24,7 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
-    },
+    onLoad: function (options) {},
 
 
 
@@ -54,40 +51,48 @@ Page({
             that.base = 'work';
         }
         if (that.data.tab == '我的发布') {
+            this.getMyData();
             return;
         }
         that.getPageData();
     },
 
     //获取我的数据
-    getMyData:function(){
-        db.collection('second').where({
-            search_name:db.RegExp({
-              regexp: '.*' + event.detail + '.*',
-              options: 'i',
-           })
-        }).orderBy('creat','desc').get({
-          success:function(res){
+    getMyData: function () {
+        let that = this;
+        Promise.all([
+                db.collection('second').where({
+                    _openid: app.globalData.openid
+                }).orderBy('creat', 'desc').get(),
+                db.collection('food').where({
+                    _openid: app.globalData.openid
+                }).orderBy('creat', 'desc').get(), db.collection('work').where({
+                    _openid: app.globalData.openid
+                }).orderBy('creat', 'desc').get(),
+            ])
+            .then(([res1, res2, res3]) => {
+                const list1 = res1.data;
+                const list2 = res2.data;
+                const list3 = res3.data;
                 that.setData({
-                   list:res.data
+                    list: list1.concat(list2.concat(list3))
                 })
                 wx.hideLoading()
-          },
-          fail(er){
-               wx.hideLoading()
-               wx.showToast({
-                title: '搜索失败，请重试',
-                icon: 'none',
-                duration: 2000
-              })
-          }
-        })
+            })
+            .catch((e) => {
+                wx.hideLoading()
+                wx.showToast({
+                    title: '搜索失败，请重试' + e,
+                    icon: 'none',
+                    duration: 2000
+                })
+            })
     },
 
     //获取数据
     getPageData: function () {
         let that = this;
-        db.collection(that.base).orderBy('creat','desc').limit(20).get({
+        db.collection(that.base).orderBy('creat', 'desc').limit(20).get({
             success: function (res) {
                 that.setData({
                     list: res.data,
@@ -114,12 +119,12 @@ Page({
         })
     },
 
-    showDetail:function(event){
+    showDetail: function (event) {
         app.globalData.detailData = event.detail.data;
         wx.navigateTo({
             url: "/pages/detail/detail",
-          })
-      },
+        })
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -195,8 +200,7 @@ Page({
             posY = 100;
         }
         this.setData({
-            mx: e.detail.x,
-            my: posY
+            offsety: posY
         })
     },
 
@@ -204,17 +208,10 @@ Page({
      * 拖拽结束
      */
     handleTouchEnd: function (e) {
-        if (app.globalData.screenWidth / 2 > this.data.mx) {
-            this.setData({
-                x: `10px`,
-                y: `${this.data.my}px`
-            })
-        } else {
-            this.setData({
-                x: `${app.globalData.screenWidth-50}px`,
-                y: `${this.data.my}px`
-            })
-        }
+        this.setData({
+            x: `${app.globalData.screenWidth-50}px`,
+            y: `${this.data.offsety}px`
+        })
     },
 
     /**

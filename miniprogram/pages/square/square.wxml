@@ -9,7 +9,7 @@
 <van-tabs active="{{ active }}" bind:change="onChange" custom-class="wen">
     <van-tab title="闲置宝贝">
         <block wx:if="{{list.length!==0}}" wx:for="{{list}}" wx:key="index">
-            <van-item bindcustomevent="showDetail" item='{{item}}'></van-item>
+            <item bindcustomevent="showDetail" item='{{item}}'></item>
         </block>
         <block wx:if="{{list.length==0}}">
             <van-empty description="空空如也" />
@@ -17,7 +17,7 @@
     </van-tab>
     <van-tab title="社区美食">
         <block wx:if="{{list.length!==0}}" wx:for="{{list}}" wx:key="index">
-            <van-item bindcustomevent="showDetail" item='{{item}}'></van-item>
+            <item bindcustomevent="showDetail" item='{{item}}'></item>
         </block>
         <block wx:if="{{list.length==0}}">
             <van-empty description="空空如也" />
@@ -25,7 +25,7 @@
     </van-tab>
     <van-tab title="工作推荐">
         <block wx:if="{{list.length!==0}}" wx:for="{{list}}" wx:key="index">
-            <van-item bindcustomevent="showDetail" item='{{item}}'></van-item>
+            <item bindcustomevent="showDetail" item='{{item}}'></item>
         </block>
         <block wx:if="{{list.length==0}}">
             <van-empty description="空空如也" />
@@ -33,7 +33,7 @@
     </van-tab>
     <van-tab title="我的发布">
         <block wx:if="{{list.length!==0}}" wx:for="{{list}}" wx:key="index">
-            <van-item bindcustomevent="showDetail" item='{{item}}'></van-item>
+            <item bindcustomevent="showDetail" item='{{item}}'></item>
         </block>
         <block wx:if="{{list.length==0}}">
             <van-empty description="空空如也" />
