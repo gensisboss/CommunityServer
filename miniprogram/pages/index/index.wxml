@@ -3,7 +3,7 @@
 <swiper indicator-dots indicator-color="white" indicator-active-color="black" autoplay="{{autoplay}}" circular="{{circular}}" class="banner">
      <block wx:for="{{banner}}" wx:key="index">
           <swiper-item>
-               <image mode="aspectFill" class="banner_item" src="{{item.img}}"></image>
+               <image mode="aspectFill" class="banner_item" src="{{item.url}}"></image>
           </swiper-item>
      </block>
 </swiper>
