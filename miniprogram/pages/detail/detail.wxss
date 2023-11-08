@@ -6,7 +6,7 @@
     margin-top: 30rpx;
     margin-bottom: 30rpx;
     background-color: #fff;
-    border-bottom: 1px solid #ededed; 
+    border-bottom: 1px solid #ededed;
     border-top: 1px solid #ededed;
     padding-bottom: 5px;
 }
@@ -118,3 +118,55 @@
     color: #999999;
 }
 
+.comment-line {
+    width: 100%;
+    background-color: #979797;
+    color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 50rpx;
+    font-size: 30rpx;
+    margin-top: 10rpx;
+}
+
+.comment-box {
+    width: 100%;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    margin-top: 10rpx;
+    min-height: 500px;
+}
+
+
+.comment-bar {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    /* 固定定位，屏幕底部 */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* 位于屏幕底部 */
+    background-color: #FFF;
+    padding: 10px;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    /* 确保不被其他内容遮挡 */
+}
+
+.comment-field {
+    width: 70%;
+    flex-grow: 1;
+    margin-right: 10px;
+    /* 添加间隔 */
+}
+
+.comment-button {
+    width: 50px !important;
+    margin-right: 10px !important;
+}

@@ -1,0 +1,130 @@
+/* components/item.wxss */
+.comment {
+    width: 700rpx;
+    height: 200rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20rpx;
+}
+
+.comment_top {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 25%;
+    margin-top: 10rpx;
+}
+
+.comment_top text {
+    font-size: 35rpx;
+    text-align: center;
+    padding-left: 6rpx;
+    font-weight: 300;
+}
+
+.comment_top image {
+    border-radius: 30rpx;
+    width: 70rpx;
+    height: 70rpx;
+    vertical-align: center;
+}
+
+
+.comment_center {
+    width: 100%;
+    height: 55%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+.comment_center text {
+    font-weight: 400;
+    font-size: 35rpx;
+    margin-left: 30px;
+}
+
+.comment_bottom {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.comment_bottom text{
+   font-size: 30rpx;
+   color: #999999;
+   margin-left: 30px;
+}
+
+
+.subcomment {
+    width: 600rpx;
+    height: 150rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10rpx;
+    margin-left: 60rpx;
+}
+
+.subcomment_top {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 25%;
+    margin-top: 10rpx;
+}
+
+.subcomment_top text {
+    font-size: 30rpx;
+    font-weight: 300;
+    margin-right: 30rpx;
+}
+
+.subcomment_top image {
+    border-radius: 30rpx;
+    width: 50rpx;
+    height: 50rpx;
+}
+
+
+.subcomment_center {
+    width: 100%;
+    height: 55%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+.subcomment_center text {
+    font-weight: 500;
+    font-size: 30rpx;
+    margin-left: 30px;
+}
+
+.subcomment_bottom {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.subcomment_bottom text{
+   font-size: 30rpx;
+   color: #999999;
+   margin-left: 30px;
+}
+
+
+

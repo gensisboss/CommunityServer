@@ -15,7 +15,28 @@ Page({
         avatarUrl: '',
         nickName: '',
         creat: 0,
-        isMy: false
+        isMy: false,
+
+        commentText: '', // 用于绑定输入框的数据
+        comments: [{
+                content: '这是第一条评论',
+                nickName: '微信用户',
+                time: 1699458926582,
+                avatarUrl: '../../images/head.png',
+                subComment: [{
+                    content: '这是第一条评论',
+                    nickName: '微信用户',
+                    time: 1699458926582,
+                    avatarUrl: '../../images/head.png',
+                },{
+                    content: '这是第一条评论',
+                    nickName: '微信用户',
+                    time: 1699458926582,
+                    avatarUrl: '../../images/head.png',
+                }]
+            },
+           
+        ]
     },
 
     /**
@@ -34,6 +55,11 @@ Page({
             creat: data.creat,
             isMy: app.globalData.openid == data._openid
         })
+    },
+
+
+    replayComment: function (e) {
+
     },
 
 

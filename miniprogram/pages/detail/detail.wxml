@@ -15,21 +15,37 @@
         <block wx:for="{{fileList}}" wx:key="index">
             <image class="article-image" src="{{item.url}}"></image>
         </block>
-       
+
         <text class="article-content">{{notes}}\n</text>
         <text class="article-concat">联系方式：{{phone}}</text>
     </view>
 
     <view class="{{isMy ? 'small-center' : 'small-end'}}">
-    <view wx:if="{{isMy}}"> 
-        <image class="small-images" src="../../images/delete.png"></image>
-        <text bindtap="deleteItem" class="small-text">删除</text>
+        <view wx:if="{{isMy}}">
+            <image class="small-images" src="../../images/delete.png"></image>
+            <text bindtap="deleteItem" class="small-text">删除</text>
+        </view>
+        <view>
+            <image class="small-images" src="../../images/browse.png"></image>
+            <text class="small-text">66</text>
+        </view>
     </view>
-    <view>
-        <image class="small-images" src="../../images/browse.png"></image>
-        <text class="small-text">66</text>
+    <view class="comment-line">
+     <text>————————精彩评论————————</text>
     </view>
-       
+    <view class="comment-box">
+        <block wx:if="{{comments.length!==0}}" wx:for="{{comments}}" wx:key="index">
+            <comment bindcustomevent="replayComment" comment='{{item}}'></comment>
+        </block>
+        <block wx:if="{{comments.length==0}}">
+            <van-empty description="空空如也" />
+        </block>
+    </view>
+
+
+    <view class="comment-bar">
+        <van-field class="comment-field" placeholder="发表评论..." adjust-position bind:confirm="onConfirm" auto-focus="{{ false }}" bind:input="onInput" />
+        <van-button  custom-class="comment-button" type="info" size="small" bind:tap="onSubmit">发布
+        </van-button>
     </view>
 </view>
-

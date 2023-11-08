@@ -1,0 +1,30 @@
+<!--components/comment/comment.wxml-->
+<wxs src="../../common.wxs" module="morejs" />
+
+<view class="comment">
+    <view class="comment_top">
+        <image src="{{comment.avatarUrl}}"></image>
+        <text>{{comment.nickName}}</text>
+    </view>
+    <view class="comment_center">
+        <text>{{comment.content}}</text>
+    </view>
+    <view class="comment_bottom">
+        <text>{{morejs.format(comment.time)}}</text>
+        <block wx:if="{{comment.subComment.length!==0}}" wx:for="{{comment.subComment}}" wx:key="index">
+            <view class="subcomment">
+                <view class="subcomment_top">
+                    <image src="{{item.avatarUrl}}"></image>
+                    <text>{{item.nickName}}</text>
+                </view>
+                <view class="subcomment_center">
+                    <text>{{item.content}}</text>
+                </view>
+                <view class="subcomment_bottom">
+                    <text>{{morejs.format(item.time)}}</text>
+                </view>
+            </view>
+        </block>
+    </view>
+
+</view>
