@@ -9,8 +9,7 @@ Page({
         autoplay: true,
         circular: true,
         banner: [],
-        channel: '推荐',
-        list: [],//list是用来存放文章的数组
+        list: [],
         nomore: false,
         page: 0,
         tongzhi: '',
@@ -35,6 +34,38 @@ Page({
                 //第一次进来没有这个openid缓存，可以获取存进去
                 //获取用户的_openid
                 that.get_openid();
+            }
+        })
+
+        wx.getStorage({
+            key: 'avatarUrl',
+            success(res) {
+                //把缓存的openid赋给全局变量openid
+                app.globalData.avatarUrl = res.data;
+                console.log("玩家的头像",res)
+            },
+            fail(er) {
+                app.globalData.avatarUrl = '../../images/head.png';
+                wx.setStorage({
+                    key: "avatarUrl",
+                    data: '../../images/head.png',
+                })
+            }
+        })
+
+        wx.getStorage({
+            key: 'nickName',
+            success(res) {
+                //把缓存的openid赋给全局变量openid
+                app.globalData.nickName = res.data;
+                console.log("玩家的昵称",res)
+            },
+            fail(er) {
+                app.globalData.nickName = "微信用户";
+                wx.setStorage({
+                    key: "nickName",
+                    data: '微信用户',
+                })
             }
         })
 
@@ -72,11 +103,11 @@ Page({
             name: 'login',
             success: function (res) {
                 console.log("openid数据", res)
-                app.globalData.openid = res.result.openid;
+                app.globalData.openid = res.result.userInfo.openId;
                 //把openid放到缓存里面
                 wx.setStorage({
                     key: "openid",
-                    data: res.result.openid
+                    data: res.result.userInfo.openId
                 })
             },
             fail: function (res) {
@@ -86,62 +117,35 @@ Page({
     },
     //监听切换导航的变化（推荐、新闻）
     onChange(event) {
-        console.log(event.detail.title)
-        let that = this;
-        that.setData({
-            channel: event.detail.title,
-        })
-        app.globalData.channel = event.detail.title;
-        if (that.data.channel == '推荐') {
-            app.globalData.channel = event.detail.title
-            //去查询获取数据库的文章列表
-          
+        
+        if (event.detail.title == '推荐') {
+            this.getPageData("official")
         }
-        if (that.data.channel == '新闻') {
-            app.globalData.channel = event.detail.title
-            //通过请求第三方接口去获取财经新闻的列表
-          
+        if (event.detail.title == '新闻') {
+            this.getPageData("new")
         }
 
     },
 
-    //跳转到文章详情页
-    go_detail: function (e) {
+     //获取数据
+     getPageData: function (base) {
+        console.log(base)
         let that = this;
-        console.log(e.currentTarget.dataset.id)
-        let content = encodeURIComponent(e.currentTarget.dataset.id)
-        wx.navigateTo({
-            url: '/pages/detail/detail?id=' + content,
-        })
-    },
-    //获取新闻，一次就获取20条，想获取更多得调用gengduo()函数
-    get: function () {
-        let that = this;
-        wx.showLoading({
-            title: '加载中',
-        })
-        wx.request({
-            url: 'https://api.jisuapi.com/news/get',
-            data: {
-                channel: '财经',
-                start: 0,
-                num: 20,
-                appkey: '填入您申请的appkey'
-            },
+        db.collection(base).orderBy('creat', 'desc').limit(20).get({
             success: function (res) {
-                console.log(res)
                 that.setData({
-                    list: res.data.result.list,
+                    list: res.data,
                 })
-                //暂停刷新
-                wx.stopPullDownRefresh();
                 wx.hideLoading()
+                console.log(res)
             },
             fail(er) {
+                wx.hideLoading()
                 console.log(er)
             }
         })
     },
+
 
 
     go: function (e) {

@@ -11,58 +11,31 @@ Page({
         note_counts: 0,
         multiple: true,
         fileList: [],
-        linshi: [],  //存放图片的临时地址
+        linshi: [], //存放图片的临时地址
         phone: '',
         avatarUrl: '',
         nickName: '',
         userInfo: '',
 
-        type:''
+        type: ''
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-       
-    },
-    getUserProfile(e) {
-        let that = this;
-        if (that.data.userInfo !== '') {
-            that.check();
-        }
-        if (that.data.userInfo == '') {
-            wx.getUserProfile({
-                desc: '用于完善用户资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-                success: (res) => {
-                    that.setData({
-                        userInfo: res.userInfo,
-                        avatarUrl: res.userInfo.avatarUrl,
-                        nickName: res.userInfo.nickName,
-                    })
-
-                    that.check();
-                },
-                fail() {
-                    wx.showToast({
-                        title: '请授权后方可使用',
-                        icon: 'none',
-                        duration: 2000
-                    });
-                }
-            })
-        }
 
     },
 
-    chooseTab:function(e){
-        console.log("当前选择种类",e.currentTarget.dataset.id)
+
+    chooseTab: function (e) {
+        console.log("当前选择种类", e.currentTarget.dataset.id)
         let that = this;
         that.setData({
-            type : e.currentTarget.dataset.id
+            type: e.currentTarget.dataset.id
         })
         that.type = e.currentTarget.dataset.id;
-        console.log("当前发布种类",that.type);
+        console.log("当前发布种类", that.type);
     },
 
     check: function () {
@@ -107,47 +80,53 @@ Page({
             })
             return false;
         }
-        that.fabu();
+        return true;
     },
 
     fabu: function () {
         let that = this;
-        db.collection(that.type).add({
-            data: {
-                title: that.data.title,
-                phone: that.data.phone,
-                fileList: that.data.fileList,
-                notes: that.data.notes,
-                creat: new Date().getTime(),
-                search_name:  that.data.title,
-                avatarUrl: that.data.avatarUrl,
-                nickName: that.data.nickName,
-            },
-            success: function (res) {
-                wx.hideLoading()
-                wx.showToast({
-                    title: '发布成功',
-                    icon: 'success',
-                    duration: 2000
-                })
-                setTimeout(function () {
-                    wx.navigateBack({
-                        delta: 0,
+        if (that.check()) {
+            db.collection(that.type).add({
+                data: {
+                    title: that.data.title,
+                    phone: that.data.phone,
+                    fileList: that.data.fileList,
+                    notes: that.data.notes,
+                    creat: new Date().getTime(),
+                    search_name: that.data.title,
+                    avatarUrl: that.data.avatarUrl,
+                    nickName: that.data.nickName,
+                    base:that.type,
+                    comments: []
+                },
+                success: function (res) {
+                    wx.hideLoading()
+                    wx.showToast({
+                        title: '发布成功',
+                        icon: 'success',
+                        duration: 2000
                     })
-                }, 1000)
-            },
-            fail(er) {
-                console.log(er)
-                wx.hideLoading()
-                wx.showToast({
-                    title: '发布失败,请重试',
-                    icon: 'none',
-                    duration: 2000
-                })
-            }
-        })
+                    setTimeout(function () {
+                        wx.navigateBack({
+                            delta: 0,
+                        })
+                    }, 1000)
+                },
+                fail(er) {
+                    console.log(er)
+                    wx.hideLoading()
+                    wx.showToast({
+                        title: '发布失败,请重试',
+                        icon: 'none',
+                        duration: 2000
+                    })
+                }
+            })
+        }
+
+
     },
-  
+
     // 上传图片
     uploadToCloud(event) {
         let that = this;
@@ -176,7 +155,10 @@ Page({
                             title: '上传成功',
                             icon: 'none'
                         });
-                        const newFileList = data.map(item => ({ url: item.fileID, isImage: true, }));
+                        const newFileList = data.map(item => ({
+                            url: item.fileID,
+                            isImage: true,
+                        }));
                         console.log(newFileList)
                         //每次上传成功后，都要清空一次临时数组，避免第二次重复上传，浪费存储资源，
                         that.setData({
@@ -186,7 +168,10 @@ Page({
 
                     })
                     .catch(e => {
-                        wx.showToast({ title: '上传失败', icon: 'none' });
+                        wx.showToast({
+                            title: '上传失败',
+                            icon: 'none'
+                        });
                         console.log(e);
                     });
 
@@ -207,7 +192,7 @@ Page({
         let that = this;
         console.log(event)
         wx.previewImage({
-            urls: [event.currentTarget.dataset.url] 
+            urls: [event.currentTarget.dataset.url]
         })
     },
     //删除图片
@@ -224,16 +209,16 @@ Page({
     //获取用户输入的标题
     titleInput(e) {
         let that = this;
-        console.log("标题",e.detail)
+        console.log("标题", e.detail)
         that.setData({
             title: e.detail,
         })
     },
-    
+
     //获取用户输入的联系方式
     concatInput(e) {
         let that = this;
-        console.log("联系方式",e.detail)
+        console.log("联系方式", e.detail)
         that.setData({
             phone: e.detail,
         })
@@ -241,13 +226,13 @@ Page({
     //获取用户输入的闲置物品相关内容
     noteInput(e) {
         let that = this;
-        console.log("物品说明",e.detail.cursor)
+        console.log("物品说明", e.detail.cursor)
         that.setData({
             note_counts: e.detail.cursor,
             notes: e.detail.value,
         })
     },
- 
+
 
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -260,7 +245,11 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        let that = this;
+        that.setData({
+            avatarUrl: app.globalData.avatarUrl,
+            nickName: app.globalData.nickName
+        })
     },
 
     /**

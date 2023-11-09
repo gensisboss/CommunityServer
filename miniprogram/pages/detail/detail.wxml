@@ -44,7 +44,7 @@
 
 
     <view class="comment-bar">
-        <van-field class="comment-field" placeholder="发表评论..." adjust-position bind:confirm="onConfirm" auto-focus="{{ false }}" bind:input="onInput" />
+        <van-field class="comment-field" placeholder="发表评论..." adjust-position auto-focus="{{ false }}"bind:input="onComment" />
         <van-button  custom-class="comment-button" type="info" size="small" bind:tap="onSubmit">发布
         </van-button>
     </view>

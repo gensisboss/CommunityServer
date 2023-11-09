@@ -1,12 +1,9 @@
 <!--pages/my/my.wxml-->
 <!--头像-->
 <view class="touxiang">
-  <view class="img">
-    <open-data type="userAvatarUrl"></open-data>
-  </view>
+    <image class="img" src="{{avatarUrl}}"></image>
   <view class="tou_ren">
-    <open-data type="userNickName"></open-data>
-    <image wx:if="{{show==3}}" mode="aspectFit" style="width: 50rpx; height: 50rpx;" src="/images/renzheng.png"></image>
+    <text>{{nickName}}</text>
   </view>
 </view>
 <!--单元格-->

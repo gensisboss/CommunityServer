@@ -35,5 +35,5 @@
 </view>
 
 <view class="submit">
-    <van-button round size="small" color="#7232dd" bind:click="getUserProfile">立即发布</van-button>
+    <van-button round size="small" color="#7232dd" bind:click="fabu">立即发布</van-button>
 </view>

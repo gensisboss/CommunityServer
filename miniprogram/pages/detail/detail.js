@@ -16,27 +16,10 @@ Page({
         nickName: '',
         creat: 0,
         isMy: false,
-
+        
+        baseName:'',
         commentText: '', // 用于绑定输入框的数据
-        comments: [{
-                content: '这是第一条评论',
-                nickName: '微信用户',
-                time: 1699458926582,
-                avatarUrl: '../../images/head.png',
-                subComment: [{
-                    content: '这是第一条评论',
-                    nickName: '微信用户',
-                    time: 1699458926582,
-                    avatarUrl: '../../images/head.png',
-                },{
-                    content: '这是第一条评论',
-                    nickName: '微信用户',
-                    time: 1699458926582,
-                    avatarUrl: '../../images/head.png',
-                }]
-            },
-           
-        ]
+        comments: []
     },
 
     /**
@@ -53,30 +36,63 @@ Page({
             avatarUrl: data.avatarUrl,
             nickName: data.nickName,
             creat: data.creat,
+            comments: data.comments,
             isMy: app.globalData.openid == data._openid
         })
+        this.comments = data.comments;
+        this.baseName = data.base;
     },
 
 
-    replayComment: function (e) {
+    onComment: function (event) {
+        this.commentText = event.detail
+    },
+
+    onSubmit: function (e) {
+        const docId = app.globalData.detailData._id;
+        let that = this;
+        let comment = {
+            content: that.commentText,
+            nickName: app.globalData.nickName,
+            time: new Date().getTime(),
+            avatarUrl: app.globalData.avatarUrl,
+            subComment: []
+        }
+        console.log("厨师",that.comments)
+        that.comments.push(comment)
+        db.collection(this.baseName).doc(docId).update({
+            // data 是一个对象，里面包含你想更新的字段
+            data: {
+                comments: that.comments,
+            },
+            success: function (res) {
+                // 更新成功处理
+                that.setData({
+                    comments: that.comments
+                })
+            },
+            fail: function (err) {
+                // 更新失败处理
+                console.error(err);
+            }
+        });
 
     },
 
 
     deleteItem: function () {
         let itemId = app.globalData.detailData._id;
-        let collections = ["work", "second", "food"] // 所有可能的集合
-
-        let deletePromises = collections.map(collection =>
-            db.collection(collection).doc(itemId).remove()
-        );
-
-        Promise.race(deletePromises)
-            .then(() => {
+        db.collection(this.baseName).doc(itemId).remove({
+            success: function (res) {
                 wx.navigateBack({
                     delta: 0,
                 })
-            })
+            },
+            fail: function (err) {
+                // 删除失败处理
+                console.error(err);
+            }
+        })
     },
 
 

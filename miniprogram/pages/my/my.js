@@ -7,8 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-      show:1,  //show等于1代表可以提交信息，等于2代表等待审核或者违规无权限，等于3代表审核成功
-      _openid:'',
+      openid:'',
+      avatarUrl: '',
+      nickName: '',
   },
 
   /**
@@ -32,7 +33,9 @@ Page({
   onShow: function () {
         let that = this;
         that.setData({
-          _openid:app.globalData.openid
+           openid:app.globalData.openid,
+           avatarUrl:app.globalData.avatarUrl,
+           nickName:app.globalData.nickName
         })
   },
 

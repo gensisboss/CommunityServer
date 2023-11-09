@@ -51,6 +51,7 @@ Page({
             that.base = 'work';
         }
         if (that.data.tab == '我的发布') {
+            that.base = 'wode';
             this.getMyData();
             return;
         }
