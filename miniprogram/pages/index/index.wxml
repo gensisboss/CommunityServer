@@ -1,87 +1,54 @@
 <!--pages/index/index.wxml-->
 <!--轮播图-->
 <swiper indicator-dots indicator-color="white" indicator-active-color="black" autoplay="{{autoplay}}" circular="{{circular}}" class="banner">
-     <block wx:for="{{banner}}" wx:key="index">
-          <swiper-item>
-               <image mode="aspectFill" class="banner_item" src="{{item.url}}"></image>
-          </swiper-item>
-     </block>
+    <block wx:for="{{banner}}" wx:key="index">
+        <swiper-item>
+            <image mode="aspectFill" class="banner_item" src="{{item.url}}"></image>
+        </swiper-item>
+    </block>
 </swiper>
 
 
 <view class="bang">
-     <view class="bang_1" bindtap="daikaifa" data-id="/pages/mai/mai">
-          <image src="../../images/bangmai.png"></image>
-          <text>生活手册</text>
-     </view>
-     <view class="bang_1" bindtap="daikaifa" data-id="/pages/song/song">
-          <image src="../../images/bangsong.png"></image>
-          <text>社区周边</text>
-     </view>
-     <view class="bang_1" bindtap="daikaifa" data-id="/pages/qu/qu">
-          <image src="../../images/bangqu.png"></image>
-          <text>官方公告</text>
-     </view>
+    <view class="bang_1" bindtap="daikaifa" data-id="/pages/mai/mai">
+        <image src="../../images/bangmai.png"></image>
+        <text>生活手册</text>
+    </view>
+    <view class="bang_1" bindtap="daikaifa" data-id="/pages/song/song">
+        <image src="../../images/bangsong.png"></image>
+        <text>社区周边</text>
+    </view>
+    <view class="bang_1" bindtap="daikaifa" data-id="/pages/qu/qu">
+        <image src="../../images/bangqu.png"></image>
+        <text>官方公告</text>
+    </view>
 </view>
 
 <!--通知-->
-<van-notice-bar
-  left-icon="volume"
-  background="white"
-  color="#1c2438"
-  text="{{tongzhi}}"
-  custom-class="tongzhi"
-  speed="40"
-/>
+<van-notice-bar left-icon="volume" background="white" color="#1c2438" text="{{tongzhi}}" custom-class="tongzhi" speed="40" />
 
 
 <!--文章-->
 <van-tabs active="{{ active }}" bind:change="onChange" custom-class="wen">
-  <van-tab  title="推荐">
-            <view class="dakuang">
-          <block wx:if="{{list.length!==0}}" wx:for="{{list}}" wx:key="index">
-            <view class="yige" catchtap="go_detail" data-id="{{item._id}}">
-              <view style="width:58%;margin-right:35rpx;">
-                  <view class="titile" style="font-size:31rpx;">{{item.title}}</view>
-                  <view class="zuoxia" style="color:#999999;font-size:25rpx;margin-top:15rpx;">
-                      <text>{{item.src}}</text>
-                      <block wx:if="{{item.author!==''||item.time!==''}}">
-                        <view class="zuoxia2">
-                            <view>{{item.time}}</view>
-                        </view>
-                      </block>
-                  </view>
-              </view>
-              <image style="width:32%;height:180rpx;" src="{{item.pic}}"></image>
-            </view>   
-          </block>
-          <block wx:if="{{list.length==0}}">
-               <van-empty description="空空如也" />
-          </block>
+    <van-tab title="推荐">
+        <view class="dakuang">
+            <block wx:if="{{list.length!==0}}" wx:for="{{list}}" wx:key="index">
+                <item bindcustomevent="showDetail" item='{{item}}'></item>
+            </block>
+            <block wx:if="{{list.length==0}}">
+                <van-empty description="空空如也" />
+            </block>
         </view>
-  </van-tab>
-  <van-tab title="新闻">
-    <view class="dakuang">
-          <block wx:if="{{list.length!==0}}" wx:for="{{list}}" wx:key="index">
-            <view class="yige" catchtap="go_detail" data-id="{{item.content}}">
-              <view style="width:58%;margin-right:35rpx;">
-                  <view class="titile" style="font-size:31rpx;">{{item.title}}</view>
-                  <view class="zuoxia" style="color:#999999;font-size:25rpx;margin-top:15rpx;">
-                      <text>{{item.src}}</text>
-                      <block wx:if="{{item.author!==''||item.time!==''}}">
-                        <view class="zuoxia2">
-                            <view>{{item.time}}</view>
-                        </view>
-                      </block>
-                  </view>
-              </view>
-              <image style="width:32%;height:180rpx;" src="{{item.pic}}"></image>
-            </view>   
-          </block>
-          <block wx:if="{{list.length==0}}">
-               <van-empty description="空空如也" />
-          </block>
+    </van-tab>
+    <van-tab title="新闻">
+        <view class="dakuang">
+            <block wx:if="{{list.length!==0}}" wx:for="{{list}}" wx:key="index">
+    <item bindcustomevent="showDetail" item = '{{item}}'></item>
+</block>
+            <block wx:if="{{list.length==0}}">
+                <van-empty description="空空如也" />
+            </block>
         </view>
-  </van-tab>
-  
+    </van-tab>
+
 </van-tabs>

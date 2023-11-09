@@ -32,6 +32,9 @@
      <view class="tab" bindtap="chooseTab" data-id="work">
           <text class="{{type == 'work' ? 'tab-select' : 'tab-normal'}}">工作推荐</text>
      </view>
+     <view class="tab" bindtap="chooseTab" data-id="new">
+          <text class="{{type == 'new' ? 'tab-select' : 'tab-normal'}}">新闻趣事</text>
+     </view>
 </view>
 
 <view class="submit">

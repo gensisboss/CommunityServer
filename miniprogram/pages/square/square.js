@@ -67,16 +67,21 @@ Page({
                 }).orderBy('creat', 'desc').get(),
                 db.collection('food').where({
                     _openid: app.globalData.openid
-                }).orderBy('creat', 'desc').get(), db.collection('work').where({
+                }).orderBy('creat', 'desc').get(), 
+                db.collection('work').where({
+                    _openid: app.globalData.openid
+                }).orderBy('creat', 'desc').get(),
+                db.collection('new').where({
                     _openid: app.globalData.openid
                 }).orderBy('creat', 'desc').get(),
             ])
-            .then(([res1, res2, res3]) => {
+            .then(([res1, res2, res3,res4]) => {
                 const list1 = res1.data;
                 const list2 = res2.data;
                 const list3 = res3.data;
+                const list4 = res4.data;
                 that.setData({
-                    list: list1.concat(list2.concat(list3))
+                    list: list1.concat(list2.concat(list3).concat(list4))
                 })
                 wx.hideLoading()
             })
