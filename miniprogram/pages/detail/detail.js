@@ -16,6 +16,7 @@ Page({
         nickName: '',
         creat: 0,
         isMy: false,
+        browser:0,
         
         baseName:'',
         commentText: '', // 用于绑定输入框的数据
@@ -37,8 +38,10 @@ Page({
             nickName: data.nickName,
             creat: data.creat,
             comments: data.comments,
-            isMy: app.globalData.openid == data._openid
+            isMy: app.globalData.openid == data._openid,
+            browser: data.browser+1
         })
+        this.browser = data.browser+1;
         this.comments = data.comments;
         this.baseName = data.base;
     },
@@ -138,7 +141,14 @@ Page({
      * 生命周期函数--监听页面隐藏
      */
     onHide: function () {
-
+        const docId = app.globalData.detailData._id;
+        let that = this;
+        db.collection(this.baseName).doc(docId).update({
+            // data 是一个对象，里面包含你想更新的字段
+            data: {
+                browser: that.browser,
+            },
+        });
     },
 
     /**

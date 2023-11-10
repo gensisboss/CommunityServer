@@ -97,7 +97,8 @@ Page({
                     avatarUrl: that.data.avatarUrl,
                     nickName: that.data.nickName,
                     base:that.type,
-                    comments: []
+                    comments: [],
+                    browser:0
                 },
                 success: function (res) {
                     wx.hideLoading()

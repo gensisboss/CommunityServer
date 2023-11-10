@@ -27,7 +27,7 @@
         </view>
         <view>
             <image class="small-images" src="../../images/browse.png"></image>
-            <text class="small-text">66</text>
+            <text class="small-text">{{browser}}</text>
         </view>
     </view>
     <view class="comment-line">
