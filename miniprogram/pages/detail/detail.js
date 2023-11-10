@@ -52,14 +52,15 @@ Page({
         const docId = app.globalData.detailData._id;
         let that = this;
         let comment = {
+            openid : app.globalData.openid,
             content: that.commentText,
             nickName: app.globalData.nickName,
             time: new Date().getTime(),
             avatarUrl: app.globalData.avatarUrl,
             subComment: []
         }
-        console.log("厨师",that.comments)
         that.comments.push(comment)
+        that.comments.sort((a,b)=>{return b.time-a.time})
         db.collection(this.baseName).doc(docId).update({
             // data 是一个对象，里面包含你想更新的字段
             data: {
@@ -78,6 +79,29 @@ Page({
         });
 
     },
+
+    deleteComment: function (index) {
+        const docId = app.globalData.detailData._id;
+        let that = this;
+        that.comments.splice(index,1)
+        db.collection(this.baseName).doc(docId).update({
+            // data 是一个对象，里面包含你想更新的字段
+            data: {
+                comments: that.comments,
+            },
+            success: function (res) {
+                // 更新成功处理
+                that.setData({
+                    comments: that.comments
+                })
+            },
+            fail: function (err) {
+                // 更新失败处理
+                console.error(err);
+            }
+        });
+    },
+
 
 
     deleteItem: function () {
