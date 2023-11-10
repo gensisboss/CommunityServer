@@ -83,6 +83,7 @@ Page({
                 that.setData({
                     tongzhi: res.data[0].tip,
                 })
+                app.globalData.isExamine = res.data[0].examine
                 //关闭加载
                 wx.hideLoading()
             }

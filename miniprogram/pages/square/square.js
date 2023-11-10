@@ -17,6 +17,8 @@ Page({
         y: "600px",
 
         anniu_show: -1, //做按钮显示限制，防止用户多次点击单个按钮
+        
+        isExamine:false
     },
 
 
@@ -158,6 +160,7 @@ Page({
         let that = this;
         that.setData({
             anniu_show: -1,
+            isExamine: app.globalData.isExamine
         })
         that.shuju();
     },

@@ -41,7 +41,8 @@
     </van-tab>
 </van-tabs>
 
-<movable-area class="movable-area">
+
+<movable-area  wx:if="{{isExamine}}" class="movable-area">
     <movable-view x="{{x}}" y="{{y}}" animation="{{false}}" class="movable-view" direction='all' catchtap="fabu" bindtouchend="handleTouchEnd" bindchange="handleTouchMove">
         <image style="width: 80rpx;height: 80rpx;" fit="cover" mode="scaleToFill" src="../../images/fabu2.png"></image>
     </movable-view>
