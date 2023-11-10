@@ -16,6 +16,7 @@ Page({
         nickName: '',
         creat: 0,
         isMy: false,
+        browser:0,
         
         baseName:'',
         commentText: '', // 用于绑定输入框的数据
@@ -37,8 +38,10 @@ Page({
             nickName: data.nickName,
             creat: data.creat,
             comments: data.comments,
-            isMy: app.globalData.openid == data._openid
+            isMy: app.globalData.openid == data._openid,
+            browser: data.browser+1
         })
+        this.browser = data.browser+1;
         this.comments = data.comments;
         this.baseName = data.base;
     },
@@ -52,14 +55,15 @@ Page({
         const docId = app.globalData.detailData._id;
         let that = this;
         let comment = {
+            openid : app.globalData.openid,
             content: that.commentText,
             nickName: app.globalData.nickName,
             time: new Date().getTime(),
             avatarUrl: app.globalData.avatarUrl,
             subComment: []
         }
-        console.log("厨师",that.comments)
         that.comments.push(comment)
+        that.comments.sort((a,b)=>{return b.time-a.time})
         db.collection(this.baseName).doc(docId).update({
             // data 是一个对象，里面包含你想更新的字段
             data: {
@@ -78,6 +82,29 @@ Page({
         });
 
     },
+
+    deleteComment: function (index) {
+        const docId = app.globalData.detailData._id;
+        let that = this;
+        that.comments.splice(index,1)
+        db.collection(this.baseName).doc(docId).update({
+            // data 是一个对象，里面包含你想更新的字段
+            data: {
+                comments: that.comments,
+            },
+            success: function (res) {
+                // 更新成功处理
+                that.setData({
+                    comments: that.comments
+                })
+            },
+            fail: function (err) {
+                // 更新失败处理
+                console.error(err);
+            }
+        });
+    },
+
 
 
     deleteItem: function () {
@@ -114,7 +141,14 @@ Page({
      * 生命周期函数--监听页面隐藏
      */
     onHide: function () {
-
+        const docId = app.globalData.detailData._id;
+        let that = this;
+        db.collection(this.baseName).doc(docId).update({
+            // data 是一个对象，里面包含你想更新的字段
+            data: {
+                browser: that.browser,
+            },
+        });
     },
 
     /**

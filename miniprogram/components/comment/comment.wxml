@@ -11,6 +11,9 @@
     </view>
     <view class="comment_bottom">
         <text>{{morejs.format(comment.time)}}</text>
+        <view wx:if="{{isMy}}">
+            <image bindtap="delete" class="small-images" src="../../images/delete.png"></image>
+        </view>
         <block wx:if="{{comment.subComment.length!==0}}" wx:for="{{comment.subComment}}" wx:key="index">
             <view class="subcomment">
                 <view class="subcomment_top">
@@ -22,6 +25,7 @@
                 </view>
                 <view class="subcomment_bottom">
                     <text>{{morejs.format(item.time)}}</text>
+
                 </view>
             </view>
         </block>
