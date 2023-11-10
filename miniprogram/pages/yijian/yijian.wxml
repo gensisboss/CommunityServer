@@ -9,6 +9,6 @@
 </view>
 
 <view class="bottom">
-  <van-button round size="small" type="primary" bind:click="getUserProfile">提交宝贵意见</van-button>
+  <van-button round size="small" type="primary" bind:click="add_yijian">提交宝贵意见</van-button>
 </view>
 
