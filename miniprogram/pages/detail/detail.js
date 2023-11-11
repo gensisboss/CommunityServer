@@ -27,7 +27,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        console.log("界面数据", app.globalData.detailData)
         let data = app.globalData.detailData;
         this.setData({
             title: data.title,
@@ -41,6 +40,7 @@ Page({
             isMy: app.globalData.openid == data._openid,
             browser: data.browser+1
         })
+        console.log("浏览量",data.browser)
         this.browser = data.browser+1;
         this.comments = data.comments;
         this.baseName = data.base;
@@ -141,21 +141,29 @@ Page({
      * 生命周期函数--监听页面隐藏
      */
     onHide: function () {
-        const docId = app.globalData.detailData._id;
-        let that = this;
-        db.collection(this.baseName).doc(docId).update({
-            // data 是一个对象，里面包含你想更新的字段
-            data: {
-                browser: that.browser,
-            },
-        });
+       
     },
 
     /**
      * 生命周期函数--监听页面卸载
      */
     onUnload: function () {
-
+        let that = this;
+        const docId = app.globalData.detailData._id;
+      
+        db.collection(this.baseName).doc(docId).update({
+            // data 是一个对象，里面包含你想更新的字段
+            data: {
+                browser: that.browser,
+            },
+            success: function (res) {
+                // 更新成功处理
+            },
+            fail: function (err) {
+                // 更新失败处理
+                console.error(err);
+            }
+        });
     },
 
     /**
