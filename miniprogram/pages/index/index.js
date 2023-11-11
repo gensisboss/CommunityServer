@@ -74,6 +74,7 @@ Page({
         that.get_banner();
         //获取公告通知
         that.get_tongzhi();
+        this.getPageData("official")
     },
     get_tongzhi: function () {
         let that = this;
@@ -82,6 +83,7 @@ Page({
                 that.setData({
                     tongzhi: res.data[0].tip,
                 })
+                app.globalData.isExamine = res.data[0].examine
                 //关闭加载
                 wx.hideLoading()
             }
@@ -117,7 +119,6 @@ Page({
     },
     //监听切换导航的变化（推荐、新闻）
     onChange(event) {
-        
         if (event.detail.title == '推荐') {
             this.getPageData("official")
         }
@@ -125,6 +126,13 @@ Page({
             this.getPageData("new")
         }
 
+    },
+
+    showDetail: function (event) {
+        app.globalData.detailData = event.detail.data;
+        wx.navigateTo({
+            url: "/pages/detail/detail",
+        })
     },
 
      //获取数据

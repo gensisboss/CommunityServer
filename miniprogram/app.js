@@ -12,8 +12,9 @@ App({
 
     this.globalData = {
       openid:'',
-      channel:'跑腿资讯',
-      campus:'',
+      avatarUrl:'',
+      nickName:'',
+      isExamine:true
     }
   }
 })
