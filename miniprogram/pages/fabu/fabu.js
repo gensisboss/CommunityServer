@@ -17,7 +17,8 @@ Page({
         nickName: '',
         userInfo: '',
 
-        type: ''
+        type: '',
+        online:false
     },
 
     /**
@@ -249,7 +250,8 @@ Page({
         let that = this;
         that.setData({
             avatarUrl: app.globalData.avatarUrl,
-            nickName: app.globalData.nickName
+            nickName: app.globalData.nickName,
+           online:app.globalData.online
         })
     },
 

@@ -20,7 +20,9 @@ Page({
         
         baseName:'',
         commentText: '', // 用于绑定输入框的数据
-        comments: []
+        comments: [],
+
+        online:false
     },
 
     /**
@@ -40,7 +42,6 @@ Page({
             isMy: app.globalData.openid == data._openid,
             browser: data.browser+1
         })
-        console.log("浏览量",data.browser)
         this.browser = data.browser+1;
         this.comments = data.comments;
         this.baseName = data.base;
@@ -52,8 +53,16 @@ Page({
     },
 
     onSubmit: function (e) {
-        const docId = app.globalData.detailData._id;
         let that = this;
+        if (that.commentText == '') {
+            wx.showToast({
+                title: '请输入评论',
+                icon: 'none',
+                duration: 2000
+            })
+            return;
+        }
+        const docId = app.globalData.detailData._id;
         let comment = {
             openid : app.globalData.openid,
             content: that.commentText,
@@ -134,7 +143,10 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        let that = this;
+        that.setData({
+           online:app.globalData.online
+        })
     },
 
     /**

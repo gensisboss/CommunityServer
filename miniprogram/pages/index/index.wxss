@@ -19,7 +19,7 @@ page{
   width: 90%;
   height: 200rpx;
   margin-left: 5%;
-  margin-top: 280rpx;
+  margin-top: 40rpx;
   position: absolute;
   z-index: 1;
   display: flex;

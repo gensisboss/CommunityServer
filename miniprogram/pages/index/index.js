@@ -29,7 +29,7 @@ Page({
             success(res) {
                 //把缓存的openid赋给全局变量openid
                 app.globalData.openid = res.data;
-                console.log("玩家的openid",res)
+                console.log("玩家的openid", res)
             },
             fail(er) {
                 //第一次进来没有这个openid缓存，可以获取存进去
@@ -43,7 +43,7 @@ Page({
             success(res) {
                 //把缓存的openid赋给全局变量openid
                 app.globalData.avatarUrl = res.data;
-                console.log("玩家的头像",res)
+                console.log("玩家的头像", res)
             },
             fail(er) {
                 app.globalData.avatarUrl = '../../images/head.png';
@@ -59,7 +59,7 @@ Page({
             success(res) {
                 //把缓存的openid赋给全局变量openid
                 app.globalData.nickName = res.data;
-                console.log("玩家的昵称",res)
+                console.log("玩家的昵称", res)
             },
             fail(er) {
                 app.globalData.nickName = "微信用户";
@@ -69,13 +69,9 @@ Page({
                 })
             }
         })
-
-
         //获取轮播图
         that.get_banner();
-        //获取公告通知
-        that.get_tongzhi();
-        this.getPageData("official")
+
     },
     get_tongzhi: function () {
         let that = this;
@@ -86,7 +82,7 @@ Page({
                     tongzhi: res.data[0].tip,
                     online: res.data[0].online
                 })
-                console.log("当前通知信息",res)
+                console.log("当前通知信息", res)
                 app.globalData.online = res.data[0].online
                 //关闭加载
                 wx.hideLoading()
@@ -139,8 +135,8 @@ Page({
         })
     },
 
-     //获取数据
-     getPageData: function (base) {
+    //获取数据
+    getPageData: function (base) {
         console.log(base)
         let that = this;
         db.collection(base).orderBy('creat', 'desc').limit(20).get({
@@ -189,6 +185,9 @@ Page({
      */
     onShow: function () {
 
+        //获取公告通知
+        this.get_tongzhi();
+        this.getPageData("official")
     },
 
     /**

@@ -1,42 +1,44 @@
 <!--pages/fabu/fabu.wxml-->
-<van-field value="{{title}}" bindinput="titleInput"  placeholder="请输入标题" label="标题" />
+<view wx:if="{{online}}">
+    <van-field value="{{title}}" bindinput="titleInput" placeholder="请输入标题" label="标题" />
 
-<van-field value="{{phone}}" bindinput="concatInput" placeholder="请输入你的联系方式" label="联系方式" />
+    <van-field value="{{phone}}" bindinput="concatInput" placeholder="请输入你的联系方式" label="联系方式" />
 
-<view class="des">1. 温馨提示：请上传闲置物品图片，最多3张</view>
-<block wx:for="{{ fileList }}" wx:key="index">
-    <view class="img2">
-        <view bindtap="delete" data-id="{{index}}">x</view>
-        <image bindtap="previewImage" data-url="{{item.url}}" src="{{item.url}}"></image>
+    <view class="des">1. 温馨提示：请上传闲置物品图片，最多3张</view>
+    <block wx:for="{{ fileList }}" wx:key="index">
+        <view class="img2">
+            <view bindtap="delete" data-id="{{index}}">x</view>
+            <image bindtap="previewImage" data-url="{{item.url}}" src="{{item.url}}"></image>
+        </view>
+    </block>
+    <image wx:if="{{fileList.length<3}}" bindtap="uploadToCloud" style="width: 200rpx;height: 200rpx;" src="/images/xiangji.png"></image>
+
+
+    <view class="des">2. 请输入闲置物品相关说明</view>
+    <view class="b_notes">
+        <view class="b_text">
+            <textarea value="{{notes}}" bindinput="noteInput" maxlength="100" placeholder="请输入闲置物品相关说明"></textarea>
+            <view class="b_less">{{note_counts}}/100</view>
+        </view>
     </view>
-</block>
-<image wx:if="{{fileList.length<3}}" bindtap="uploadToCloud" style="width: 200rpx;height: 200rpx;" src="/images/xiangji.png"></image>
 
-
-<view class="des">2. 请输入闲置物品相关说明</view>
-<view class="b_notes">
-    <view class="b_text">
-        <textarea value="{{notes}}" bindinput="noteInput" maxlength="100" placeholder="请输入闲置物品相关说明"></textarea>
-        <view class="b_less">{{note_counts}}/100</view>
+    <view class="des">3. 请选择你要发布的种类</view>
+    <view class="tabs">
+        <view class="tab" bindtap="chooseTab" data-id="second">
+            <text class="{{type == 'second' ? 'tab-select' : 'tab-normal'}}">闲置宝贝</text>
+        </view>
+        <view class="tab" bindtap="chooseTab" data-id="food">
+            <text class="{{type == 'food' ? 'tab-select' : 'tab-normal'}}">社区美食</text>
+        </view>
+        <view class="tab" bindtap="chooseTab" data-id="work">
+            <text class="{{type == 'work' ? 'tab-select' : 'tab-normal'}}">工作推荐</text>
+        </view>
+        <view class="tab" bindtap="chooseTab" data-id="new">
+            <text class="{{type == 'new' ? 'tab-select' : 'tab-normal'}}">新闻趣事</text>
+        </view>
     </view>
-</view>
 
-<view class="des">3. 请选择你要发布的种类</view>
-<view class="tabs">
-     <view class="tab" bindtap="chooseTab" data-id="second">
-          <text class="{{type == 'second' ? 'tab-select' : 'tab-normal'}}">闲置宝贝</text>
-     </view>
-     <view class="tab" bindtap="chooseTab" data-id="food">
-          <text class="{{type == 'food' ? 'tab-select' : 'tab-normal'}}">社区美食</text>
-     </view>
-     <view class="tab" bindtap="chooseTab" data-id="work">
-          <text class="{{type == 'work' ? 'tab-select' : 'tab-normal'}}">工作推荐</text>
-     </view>
-     <view class="tab" bindtap="chooseTab" data-id="new">
-          <text class="{{type == 'new' ? 'tab-select' : 'tab-normal'}}">新闻趣事</text>
-     </view>
-</view>
-
-<view class="submit">
-    <van-button round size="small" color="#7232dd" bind:click="fabu">立即发布</van-button>
+    <view class="submit">
+        <van-button round size="small" color="#7232dd" bind:click="fabu">立即发布</van-button>
+    </view>
 </view>

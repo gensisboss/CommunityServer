@@ -9,7 +9,6 @@
     </block>
 </swiper>
 
-
 <view class="bang">
     <view class="bang_1" bindtap="daikaifa" data-id="/pages/mai/mai">
         <image src="../../images/bangmai.png"></image>
@@ -53,4 +52,7 @@
     </van-tab>
 
 </van-tabs>
+</view>
+<view wx:if="{{!online}}">
+<text>这是主页</text>
 </view>

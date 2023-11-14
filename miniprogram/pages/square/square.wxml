@@ -49,3 +49,6 @@
     </movable-view>
 </movable-area>
 </view>
+<view wx:if="{{!online}}">
+<text>这是大厅</text>
+</view>
