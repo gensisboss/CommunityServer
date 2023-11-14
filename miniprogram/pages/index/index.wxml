@@ -1,4 +1,5 @@
 <!--pages/index/index.wxml-->
+<view wx:if="{{online}}">
 <!--轮播图-->
 <swiper indicator-dots indicator-color="white" indicator-active-color="black" autoplay="{{autoplay}}" circular="{{circular}}" class="banner">
     <block wx:for="{{banner}}" wx:key="index">
@@ -52,3 +53,4 @@
     </van-tab>
 
 </van-tabs>
+</view>

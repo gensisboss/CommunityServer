@@ -13,6 +13,7 @@ Page({
         nomore: false,
         page: 0,
         tongzhi: '',
+        online: false
     },
 
     /**
@@ -78,12 +79,15 @@ Page({
     },
     get_tongzhi: function () {
         let that = this;
+        console.log("获取通知信息")
         db.collection('tongzhi').limit(1).get({
             success: function (res) {
                 that.setData({
                     tongzhi: res.data[0].tip,
+                    online: res.data[0].online
                 })
-                app.globalData.isExamine = res.data[0].examine
+                console.log("当前通知信息",res)
+                app.globalData.online = res.data[0].online
                 //关闭加载
                 wx.hideLoading()
             }

@@ -10,6 +10,7 @@ Page({
       openid:'',
       avatarUrl: '',
       nickName: '',
+      online:false
   },
 
   /**
@@ -35,7 +36,8 @@ Page({
         that.setData({
            openid:app.globalData.openid,
            avatarUrl:app.globalData.avatarUrl,
-           nickName:app.globalData.nickName
+           nickName:app.globalData.nickName,
+           online:app.globalData.online
         })
   },
 

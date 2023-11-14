@@ -5,7 +5,7 @@ App({
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
       wx.cloud.init({
-        env: 'cloud1-9gf2x72e02966e63',
+        env: 'cloud1-1gsj1u740c14577b',
         traceUser: true,
       })
     }
@@ -14,7 +14,7 @@ App({
       openid:'',
       avatarUrl:'',
       nickName:'',
-      isExamine:true
+      online:false
     }
   }
 })
