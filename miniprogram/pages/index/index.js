@@ -1,6 +1,8 @@
 // pages/index/index.js
 const app = getApp();
 const db = wx.cloud.database();
+
+
 Page({
     /**
      * 页面的初始数据
@@ -13,7 +15,8 @@ Page({
         nomore: false,
         page: 0,
         tongzhi: '',
-        online: false
+        online: false,
+
     },
 
     /**

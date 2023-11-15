@@ -1,6 +1,8 @@
 // pages/square/square.js
 const app = getApp();
 const db = wx.cloud.database();
+const util = require('../../util/util')
+
 Page({
     /**
      * 页面的初始数据
@@ -18,7 +20,8 @@ Page({
 
         anniu_show: -1, //做按钮显示限制，防止用户多次点击单个按钮
         
-        online:false
+        online:false,
+
     },
 
 
