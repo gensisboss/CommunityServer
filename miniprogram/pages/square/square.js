@@ -1,7 +1,6 @@
 // pages/square/square.js
 const app = getApp();
 const db = wx.cloud.database();
-const util = require('../../util/util')
 
 Page({
     /**
