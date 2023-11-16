@@ -120,8 +120,8 @@
 
 .comment-line {
     width: 100%;
-    background-color: #979797;
-    color: #ffffff;
+    background-color: #e9eaec;
+    color: #afafaf;
     display: flex;
     flex-direction: row;
     justify-content: center;

@@ -1,7 +1,7 @@
 <!--pages/index/index.wxml-->
 <view wx:if="{{online}}">
 <!--轮播图-->
-<swiper indicator-dots indicator-color="white" indicator-active-color="black" autoplay="{{autoplay}}" circular="{{circular}}" class="banner">
+<swiper indicator-dots = "{{banner.length > 1}}" indicator-color="white" indicator-active-color="black" autoplay="{{autoplay}}" circular="{{circular}}" class="banner">
     <block wx:for="{{banner}}" wx:key="index">
         <swiper-item>
             <image mode="aspectFill" class="banner_item" src="{{item.url}}"></image>

@@ -24,9 +24,6 @@ Page({
      */
     onLoad: function (options) {
         let that = this;
-        wx.showLoading({
-            title: '加载中',
-        })
         wx.getStorage({
             key: 'openid',
             success(res) {

@@ -16,9 +16,9 @@ page{
     width: 720rpx;
     height: 58rpx;
     /*设置背景颜色*/
-    background: #eeeeee;
+    background: #ffffff;
     /*设置边框*/
-    border: 2rpx solid #ececee;
+    border: 2rpx solid #ffffff;
     /*设置边框圆角*/
     border-radius: 8rpx;
     /*设置行高*/
