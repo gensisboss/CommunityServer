@@ -1,85 +1,72 @@
 <!--pages/square/square.wxml-->
 <view wx:if="{{online}}">
     <view class="searchOuterView" bindtap="search">
-    <view class="searchInnerView">
-        <image src="../../images/search.png"></image>
-        <text>搜索</text>
+        <view class="searchInnerView">
+            <image src="../../images/search.png"></image>
+            <text>搜索</text>
+        </view>
     </view>
+
+    <van-tabs active="{{ active }}" bind:change="onChange" custom-class="wen">
+        <van-tab title="闲置宝贝">
+            <block wx:if="{{list.length!==0}}" wx:for="{{list}}" wx:key="index">
+                <item bindcustomevent="showDetail" item='{{item}}'></item>
+            </block>
+            <block wx:if="{{list.length==0}}">
+                <van-empty description="空空如也" />
+            </block>
+        </van-tab>
+        <van-tab title="社区美食">
+            <block wx:if="{{list.length!==0}}" wx:for="{{list}}" wx:key="index">
+                <item bindcustomevent="showDetail" item='{{item}}'></item>
+            </block>
+            <block wx:if="{{list.length==0}}">
+                <van-empty description="空空如也" />
+            </block>
+        </van-tab>
+        <van-tab title="工作推荐">
+            <block wx:if="{{list.length!==0}}" wx:for="{{list}}" wx:key="index">
+                <item bindcustomevent="showDetail" item='{{item}}'></item>
+            </block>
+            <block wx:if="{{list.length==0}}">
+                <van-empty description="空空如也" />
+            </block>
+        </van-tab>
+        <van-tab title="我的发布">
+            <block wx:if="{{list.length!==0}}" wx:for="{{list}}" wx:key="index">
+                <item bindcustomevent="showDetail" item='{{item}}'></item>
+            </block>
+            <block wx:if="{{list.length==0}}">
+                <van-empty description="空空如也" />
+            </block>
+        </van-tab>
+    </van-tabs>
+
+
+    <movable-area wx:if="{{online}}" class="movable-area">
+        <movable-view x="{{x}}" y="{{y}}" animation="{{false}}" class="movable-view" direction='all' catchtap="fabu" bindtouchend="handleTouchEnd" bindchange="handleTouchMove">
+            <image style="width: 80rpx;height: 80rpx;" fit="cover" mode="scaleToFill" src="../../images/fabu2.png"></image>
+        </movable-view>
+    </movable-area>
 </view>
-
-<van-tabs active="{{ active }}" bind:change="onChange" custom-class="wen">
-    <van-tab title="闲置宝贝">
-        <block wx:if="{{list.length!==0}}" wx:for="{{list}}" wx:key="index">
-            <item bindcustomevent="showDetail" item='{{item}}'></item>
-        </block>
-        <block wx:if="{{list.length==0}}">
-            <van-empty description="空空如也" />
-        </block>
-    </van-tab>
-    <van-tab title="社区美食">
-        <block wx:if="{{list.length!==0}}" wx:for="{{list}}" wx:key="index">
-            <item bindcustomevent="showDetail" item='{{item}}'></item>
-        </block>
-        <block wx:if="{{list.length==0}}">
-            <van-empty description="空空如也" />
-        </block>
-    </van-tab>
-    <van-tab title="工作推荐">
-        <block wx:if="{{list.length!==0}}" wx:for="{{list}}" wx:key="index">
-            <item bindcustomevent="showDetail" item='{{item}}'></item>
-        </block>
-        <block wx:if="{{list.length==0}}">
-            <van-empty description="空空如也" />
-        </block>
-    </van-tab>
-    <van-tab title="我的发布">
-        <block wx:if="{{list.length!==0}}" wx:for="{{list}}" wx:key="index">
-            <item bindcustomevent="showDetail" item='{{item}}'></item>
-        </block>
-        <block wx:if="{{list.length==0}}">
-            <van-empty description="空空如也" />
-        </block>
-    </van-tab>
-</van-tabs>
-
-
-<movable-area  wx:if="{{online}}" class="movable-area">
-    <movable-view x="{{x}}" y="{{y}}" animation="{{false}}" class="movable-view" direction='all' catchtap="fabu" bindtouchend="handleTouchEnd" bindchange="handleTouchMove">
-        <image style="width: 80rpx;height: 80rpx;" fit="cover" mode="scaleToFill" src="../../images/fabu2.png"></image>
-    </movable-view>
-</movable-area>
-</view>
-<view wx:if="{{!online}}">
-    <block wx:if="{{logs.length}}">
-	<scroll-view class="container" scroll-y="true">
-	  <view class="log panel">
-	  	<view class="log_item" wx:for="{{logs}}" wx:for-index="$index" wx:for-item="log">
-	  		<text class="log_start">{{log.startTime}}</text>
-	  		<text class="log_action">{{log.action}}</text>
-	  		<text class="log_action">{{log.name}}</text>
-	  	</view>
-	  </view>
-		
-	</scroll-view>
-	<view class="clear">
-		<button bindtap="switchModal" class="clear_btn" size="mini" >清除记录</button>
-	</view>
-	<modal 
-		title="提示" 
-		confirm-text="确定" 
-		cancel-text="取消" 
-		hidden="{{modalHidden}}" 
-		bindconfirm="clearLog" 
-		bindcancel="switchModal">
-	    是否清除记录？此操作不可恢复!
-	</modal>
-</block>
-<block wx:else>
-	<view class="nodata">
-		<image class="nodata_img" src="../../images/nodata.png"></image>
-		<text class="nodata_text">暂无记录</text>
-	</view>
-</block>
-<toast hidden="{{toastHidden}}" bindchange="hideToast">清除成功！</toast>
-
+<view class="loader-box" wx:if="{{!online}}">
+    <view class="loader-rainbow">
+        <view class="loader-inner">
+            <view class="loader-line-wrap">
+                <view class="loader-line"></view>
+            </view>
+            <view class="loader-line-wrap">
+                <view class="loader-line"></view>
+            </view>
+            <view class="loader-line-wrap">
+                <view class="loader-line"></view>
+            </view>
+            <view class="loader-line-wrap">
+                <view class="loader-line"></view>
+            </view>
+            <view class="loader-line-wrap">
+                <view class="loader-line"></view>
+            </view>
+        </view>
+    </view>
 </view>
