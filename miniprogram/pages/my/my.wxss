@@ -1,8 +1,7 @@
 /* pages/my/my.wxss */
 page{
-  width: 100%;
-}
-
+    background-color: #e9eaec;
+  }
 .touxiang{
   width: 70%;
   height: 300rpx;

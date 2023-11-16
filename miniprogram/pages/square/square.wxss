@@ -1,5 +1,8 @@
 /* pages/square/square.wxss */
 /* 顶部搜索框样式 */
+page{
+    background-color: #e9eaec;
+  }
 .searchOuterView {
     /*设置内边距*/
     padding: 15rpx;
