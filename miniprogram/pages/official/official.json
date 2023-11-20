@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+      "item":"../../components/item/item"
+  },
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": true
+}

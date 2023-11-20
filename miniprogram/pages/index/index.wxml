@@ -10,15 +10,15 @@
 </swiper>
 
 <view class="bang">
-    <view class="bang_1" bindtap="daikaifa" data-id="/pages/mai/mai">
+    <view class="bang_1" bindtap="showOfficial" data-id="生活">
         <image src="../../images/bangmai.png"></image>
         <text>生活手册</text>
     </view>
-    <view class="bang_1" bindtap="daikaifa" data-id="/pages/song/song">
+    <view class="bang_1" bindtap="showOfficial" data-id="周边">
         <image src="../../images/bangsong.png"></image>
         <text>社区周边</text>
     </view>
-    <view class="bang_1" bindtap="daikaifa" data-id="/pages/qu/qu">
+    <view class="bang_1" bindtap="showOfficial" data-id="公告">
         <image src="../../images/bangqu.png"></image>
         <text>官方公告</text>
     </view>

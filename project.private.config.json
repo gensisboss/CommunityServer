@@ -34,7 +34,7 @@
                 },
                 {
                     "name": "测试",
-                    "pathName": "pages/detail/detail",
+                    "pathName": "pages/official/official",
                     "query": "",
                     "launchMode": "default",
                     "scene": null

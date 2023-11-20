@@ -1,0 +1,30 @@
+<!--pages/square/square.wxml-->
+<view wx:if="{{online}}">
+    <view wx:if="{{list.length!==0}}" wx:for="{{list}}" wx:key="index">
+        <item bindcustomevent="showDetail" item='{{item}}'></item>
+    </view>
+    <view wx:if="{{list.length==0}}">
+        <van-empty description="空空如也" />
+    </view>
+</view>
+<view class="loader-box" wx:if="{{!online}}">
+    <view class="loader-rainbow">
+        <view class="loader-inner">
+            <view class="loader-line-wrap">
+                <view class="loader-line"></view>
+            </view>
+            <view class="loader-line-wrap">
+                <view class="loader-line"></view>
+            </view>
+            <view class="loader-line-wrap">
+                <view class="loader-line"></view>
+            </view>
+            <view class="loader-line-wrap">
+                <view class="loader-line"></view>
+            </view>
+            <view class="loader-line-wrap">
+                <view class="loader-line"></view>
+            </view>
+        </view>
+    </view>
+</view>

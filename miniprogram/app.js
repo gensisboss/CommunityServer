@@ -15,7 +15,8 @@ App({
       avatarUrl:'',
       nickName:'',
       online:true,
-      detailData:''
+      detailData:'',
+      officialChanngel:''
     }
   }
 })

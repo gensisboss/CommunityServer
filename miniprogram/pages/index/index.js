@@ -128,6 +128,14 @@ Page({
 
     },
 
+    showOfficial: function (event) {
+        app.globalData.officialChanngel = event.currentTarget.dataset.id;
+        console.log("通告数据",app.globalData.officialChanngel)
+        wx.navigateTo({
+            url: "/pages/official/official",
+        })
+    },
+
     showDetail: function (event) {
         app.globalData.detailData = event.detail.data;
         wx.navigateTo({
