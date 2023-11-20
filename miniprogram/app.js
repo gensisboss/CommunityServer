@@ -14,7 +14,8 @@ App({
       openid:'',
       avatarUrl:'',
       nickName:'',
-      online:true
+      online:true,
+      detailData:''
     }
   }
 })

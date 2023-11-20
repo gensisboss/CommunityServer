@@ -19,7 +19,7 @@ Page({
         browser:0,
         
         baseName:'',
-        commentText: '', // 用于绑定输入框的数据
+        commentText: '', 
         comments: [],
 
         online:false
@@ -40,11 +40,35 @@ Page({
             creat: data.creat,
             comments: data.comments,
             isMy: app.globalData.openid == data._openid,
-            browser: data.browser+1
+            browser: data.browser
         })
-        this.browser = data.browser+1;
+        this.browser = data.browser;
         this.comments = data.comments;
         this.baseName = data.base;
+        this.commentText = '';
+        console.log("打开界面",this.browser)
+        this.addBrowser();
+    },
+
+    addBrowser(){
+        let that = this;
+        that.browser ++;
+        const docId = app.globalData.detailData._id;
+        console.log("关闭界面",app.globalData.detailData)
+        db.collection(that.baseName).doc(docId).update({
+            // data 是一个对象，里面包含你想更新的字段
+            data: {
+                browser: that.browser,
+            },
+            success: function (res) {
+                // 更新成功处理
+                console.log("更新成功")
+            },
+            fail: function (err) {
+                // 更新失败处理
+                console.error(err);
+            }
+        });
     },
 
 
@@ -54,6 +78,7 @@ Page({
 
     onSubmit: function (e) {
         let that = this;
+        console.log("评论的数据",that.commentText)
         if (that.commentText == '') {
             wx.showToast({
                 title: '请输入评论',
@@ -81,8 +106,10 @@ Page({
             success: function (res) {
                 // 更新成功处理
                 that.setData({
-                    comments: that.comments
+                    comments: that.comments,
+                    commentText:''
                 })
+                that.commentText = ''
             },
             fail: function (err) {
                 // 更新失败处理
@@ -153,29 +180,14 @@ Page({
      * 生命周期函数--监听页面隐藏
      */
     onHide: function () {
-       
+      
     },
 
     /**
      * 生命周期函数--监听页面卸载
      */
     onUnload: function () {
-        let that = this;
-        const docId = app.globalData.detailData._id;
-      
-        db.collection(this.baseName).doc(docId).update({
-            // data 是一个对象，里面包含你想更新的字段
-            data: {
-                browser: that.browser,
-            },
-            success: function (res) {
-                // 更新成功处理
-            },
-            fail: function (err) {
-                // 更新失败处理
-                console.error(err);
-            }
-        });
+       
     },
 
     /**

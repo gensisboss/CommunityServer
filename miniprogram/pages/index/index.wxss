@@ -20,7 +20,6 @@ page{
   height: 200rpx;
   margin-left: 5%;
   margin-top: 40rpx;
-  position: absolute;
   z-index: 1;
   display: flex;
   flex-direction: row;
@@ -46,7 +45,7 @@ page{
 }
 
 .tongzhi{
-  margin-top: 280rpx;
+  margin-top: 40rpx;
 }
 
 .dai{
@@ -96,17 +95,7 @@ page{
   flex-direction:column;
   justify-content: center;
 }
-.zuoxia{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.zuoxia2{
-  width: 190rpx;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
+
 .wen{
   margin-top: 20rpx;
   width: 100%;

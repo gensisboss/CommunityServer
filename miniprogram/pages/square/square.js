@@ -85,7 +85,7 @@ Page({
                 const list3 = res3.data;
                 const list4 = res4.data;
                 that.setData({
-                    list: list1.concat(list2.concat(list3).concat(list4))
+                    list: list1.concat(list2.concat(list3.concat(list4)))
                 })
                 wx.hideLoading()
             })
