@@ -36,7 +36,7 @@
         </view>
         <view class="comment-box">
             <block wx:if="{{comments.length!==0}}" wx:for="{{comments}}" wx:key="index">
-                <comment bindcustomevent="deleteComment" index='{{index}}' comment='{{item}}'></comment>
+                <comment bindcustomevent="deleteComment" data-id='{{index}}' comment='{{item}}'></comment>
             </block>
             <block wx:if="{{comments.length==0}}">
                 <van-empty description="空空如也" />

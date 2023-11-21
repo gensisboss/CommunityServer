@@ -1,7 +1,7 @@
 <!--pages/ziliao/ziliao.wxml-->
 <view class="page">
     <image class="top" src="{{avatarUrl}}" bindtap="getUserProfile" />
-    <van-field class="center" value="{{nickName}}" bindinput="nickNameInput" placeholder="微信用户" label="昵称" />
+    <van-field class="center" maxlength="8" value="{{nickName}}" bindinput="nickNameInput" placeholder="微信用户" label="昵称" />
     <view class="bottom">
         <van-button round size="small" type="primary" bind:click="setUserProfile">保存修改</van-button>
     </view>

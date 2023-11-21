@@ -1,6 +1,6 @@
 <!--pages/fabu/fabu.wxml-->
 <view wx:if="{{online}}">
-    <van-field value="{{title}}" bindinput="titleInput" placeholder="请输入标题" label="标题" />
+    <van-field value="{{title}}" maxlength="10" bindinput="titleInput" placeholder="请输入标题" label="标题" />
 
     <van-field value="{{phone}}" bindinput="concatInput" placeholder="请输入你的联系方式" label="联系方式" />
 

@@ -119,7 +119,8 @@ Page({
 
     },
 
-    deleteComment: function (index) {
+    deleteComment: function (event) {
+        let index = event.currentTarget.dataset.id
         const docId = app.globalData.detailData._id;
         let that = this;
         that.comments.splice(index,1)
