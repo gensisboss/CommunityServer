@@ -80,10 +80,10 @@ Page({
             success: function (res) {
                 that.setData({
                     tongzhi: res.data[0].tip,
-                    online: res.data[0].online
+                    online: res.data[0].online2
                 })
                 console.log("当前通知信息", res)
-                app.globalData.online = res.data[0].online
+                app.globalData.online = res.data[0].online2
                 //关闭加载
                 wx.hideLoading()
             }

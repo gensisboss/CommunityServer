@@ -36,6 +36,9 @@
         <view class="tab" bindtap="chooseTab" data-id="new">
             <text class="{{type == 'new' ? 'tab-select' : 'tab-normal'}}">新闻趣事</text>
         </view>
+        <view class="tab" bindtap="chooseTab" data-id="around">
+            <text class="{{type == 'around' ? 'tab-select' : 'tab-normal'}}">社区周边</text>
+        </view>
     </view>
 
     <view class="submit">
