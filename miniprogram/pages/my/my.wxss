@@ -55,82 +55,26 @@ page{
 }
 
 
-.loader-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
+.container{
+    padding:15px 10px;
+    width: 100%;
 }
-
-.circle_bx{
-    position: relative;
-    width: 100px;
-    height: 100px;
-  }
-  .circle_bx view{
-    display: inline-block;
-    position: relative;
-    border-radius: 50%;
-    border-top: 48px #9bddf6 solid;
-    border-bottom: 48px #9bddf6 solid;
-    border-left: 48px #9bddf6 solid;
-    border-right: 48px transparent solid;
-    color: #9bddf6;
-    animation: circle_bx  1s linear infinite ;
-  }
-  /* box-shadow: h-shadow v-shadow blur spread color inset; */
-  @keyframes circle_bx {
-    0% {
-      box-shadow: 120px 0px 0 -40px rgba(55, 145, 197, 0.5), 
-      100px 0px 0 -40px rgba(62, 96, 119, 0.75), 
-      80px 0px 0 -40px rgb(24, 149, 221);
-    }
-    100% {
-      box-shadow: 100px 0px 0 -45px rgba(9, 150, 206, 0.5), 
-      80px 0px 0 -45px rgba(84, 100, 117, 0.75), 
-      60px 0px 0 -45px rgb(8, 78, 90);
-    }
-  }
-  .circle_bx view::before {
-    position: absolute;
-    border-radius: 50%;
-    content: '';
-    top: -48px;
-    left: -48px;
-    border-top: 48px #9bddf6 solid;
-    border-bottom: 48px transparent solid;
-    border-left: 48px transparent solid;
-    border-right: 48px transparent solid;
-    animation: ccc .5s linear infinite alternate;
-  }
-  @keyframes ccc {
-    0% {
-        transform: rotate(45deg)
-    }
-    100% {
-        transform: rotate(0deg)
-    }
-  }
-  .circle_bx view::after {
-    position: absolute;
-    content: '';
-    top: -48px;
-    left: -48px;
-    border-top: 48px transparent solid;
-    border-bottom: 48px #9bddf6 solid;
-    border-left: 48px transparent solid;
-    border-right: 48px transparent solid;
-    border-radius: 50%;
-    animation: bbb .5s linear infinite alternate;
-  }
-  @keyframes bbb {
-    0% {
-        transform: rotate(-45deg)
-    }
-    100% {
-        transform: rotate(0deg)
-    }
-  } 
-  
- 
+.section{
+	margin-bottom: 10px;
+}
+.section_title{
+	font-size: 12px;
+	color:#999;
+}
+.section_check{
+	margin-right: 5px;
+}
+.section_tip{
+	display: block;
+	text-align: right;
+	color: #CEC9C9;
+	padding-bottom: 10px;
+}
+.section_body{
+	margin-top: 15px;
+}

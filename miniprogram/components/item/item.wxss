@@ -2,6 +2,7 @@
 .tiezi {
     width: 94%;
     height: 240rpx;
+    border-radius: 10px;
     background-color: white;
     margin-left: 3%;
     display: flex;
@@ -20,7 +21,7 @@
 
 .round {
     width: 100%;
-    height: 80%;
+    height: 100%;
     overflow: hidden;
     justify-content: center;
     align-items: center;

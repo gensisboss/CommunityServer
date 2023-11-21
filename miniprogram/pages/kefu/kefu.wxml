@@ -6,7 +6,7 @@
     <!--在线咨询-->
     <view class="card">
         <view class="card1">
-            <image class="wechatimg" src="/images/online.png" />
+            <image class="wechatimg" src="/images/kefu.png" />
         </view>
         <view class="borderbox">
             <view class="border"></view>

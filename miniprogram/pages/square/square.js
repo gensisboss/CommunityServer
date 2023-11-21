@@ -18,8 +18,14 @@ Page({
         y: "600px",
 
         anniu_show: -1, //做按钮显示限制，防止用户多次点击单个按钮
-        
-        online:false,
+
+        online: false,
+
+
+
+        logs: [],
+        modalHidden: true,
+        toastHidden: true
 
     },
 
@@ -28,7 +34,7 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {},
+    onLoad: function (options) { },
 
 
 
@@ -43,8 +49,23 @@ Page({
         that.shuju();
 
     },
+
+    getLogs: function () {
+        let logs = wx.getStorageSync('logs')
+        logs.forEach(function (item, index, arry) {
+            item.startTime = new Date(item.startTime).toLocaleString()
+        })
+        this.setData({
+            logs: logs
+        })
+    },
+
     shuju: function () {
         let that = this;
+        if(!app.globalData.online){
+            that.getLogs();
+            return;
+        }
         if (that.data.tab == '闲置宝贝') {
             that.base = 'second';
         }
@@ -66,20 +87,20 @@ Page({
     getMyData: function () {
         let that = this;
         Promise.all([
-                db.collection('second').where({
-                    _openid: app.globalData.openid
-                }).orderBy('creat', 'desc').get(),
-                db.collection('food').where({
-                    _openid: app.globalData.openid
-                }).orderBy('creat', 'desc').get(), 
-                db.collection('work').where({
-                    _openid: app.globalData.openid
-                }).orderBy('creat', 'desc').get(),
-                db.collection('new').where({
-                    _openid: app.globalData.openid
-                }).orderBy('creat', 'desc').get(),
-            ])
-            .then(([res1, res2, res3,res4]) => {
+            db.collection('second').where({
+                _openid: app.globalData.openid
+            }).orderBy('creat', 'desc').get(),
+            db.collection('food').where({
+                _openid: app.globalData.openid
+            }).orderBy('creat', 'desc').get(),
+            db.collection('work').where({
+                _openid: app.globalData.openid
+            }).orderBy('creat', 'desc').get(),
+            db.collection('new').where({
+                _openid: app.globalData.openid
+            }).orderBy('creat', 'desc').get(),
+        ])
+            .then(([res1, res2, res3, res4]) => {
                 const list1 = res1.data;
                 const list2 = res2.data;
                 const list3 = res3.data;
@@ -145,8 +166,8 @@ Page({
                 app.globalData.screenWidth = res.screenWidth;
                 app.globalData.screenHeight = res.screenHeight;
                 this.setData({
-                    x: `${app.globalData.screenWidth-50}px`,
-                    y: `${app.globalData.screenHeight-300}px`
+                    x: `${app.globalData.screenWidth - 50}px`,
+                    y: `${app.globalData.screenHeight - 300}px`
                 })
             },
             fail(err) {
@@ -220,7 +241,7 @@ Page({
      */
     handleTouchEnd: function (e) {
         this.setData({
-            x: `${app.globalData.screenWidth-50}px`,
+            x: `${app.globalData.screenWidth - 50}px`,
             y: `${this.data.offsety}px`
         })
     },
@@ -230,5 +251,23 @@ Page({
      */
     onShareAppMessage: function () {
 
-    }
+    },
+    switchModal: function() {
+        this.setData({
+          modalHidden: !this.data.modalHidden
+        })
+      },
+      hideToast: function() {
+        this.setData({
+          toastHidden: true
+        })
+      },
+      clearLog: function(e) {
+        wx.setStorageSync('logs', [])
+        this.switchModal()
+        this.setData({
+          toastHidden: false
+        })
+        this.getLogs()
+      }
 })

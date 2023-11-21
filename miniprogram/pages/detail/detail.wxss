@@ -151,7 +151,7 @@
     bottom: 0;
     /* 位于屏幕底部 */
     background-color: #FFF;
-    padding: 10px;
+    padding: 20px;
     box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
     z-index: 999;
     /* 确保不被其他内容遮挡 */

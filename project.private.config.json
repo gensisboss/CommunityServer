@@ -7,41 +7,8 @@
         "miniprogram": {
             "list": [
                 {
-                    "name": "db guide",
-                    "pathName": "pages/databaseGuide/databaseGuide",
-                    "query": ""
-                },
-                {
-                    "name": "详细信息",
-                    "pathName": "pages/detail/detail",
-                    "query": "",
-                    "launchMode": "default",
-                    "scene": null
-                },
-                {
-                    "name": "搜索界面",
-                    "pathName": "pages/search/search",
-                    "query": "",
-                    "launchMode": "default",
-                    "scene": null
-                },
-                {
-                    "name": "发布界面",
-                    "pathName": "pages/fabu/fabu",
-                    "query": "",
-                    "launchMode": "default",
-                    "scene": null
-                },
-                {
                     "name": "测试",
                     "pathName": "pages/official/official",
-                    "query": "",
-                    "launchMode": "default",
-                    "scene": null
-                },
-                {
-                    "name": "修改资料",
-                    "pathName": "pages/ziliao/ziliao",
                     "query": "",
                     "launchMode": "default",
                     "scene": null

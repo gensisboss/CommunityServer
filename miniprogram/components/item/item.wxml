@@ -4,7 +4,7 @@
 <view bindtap="onTap" class="tiezi">
         <view class="tiezi_left">
             <view class="round">
-                <image src="{{item.fileList[0].url}}"></image>
+                <image mode="heightFix" src="{{item.fileList[0].url}}"></image>
             </view>
         </view>
         <view class="tiezi_right">

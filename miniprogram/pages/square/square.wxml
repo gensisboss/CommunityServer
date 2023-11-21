@@ -48,24 +48,32 @@
         </movable-view>
     </movable-area>
 </view>
-<view class="loader-box" wx:if="{{!online}}">
-    <view class="loader-rainbow">
-        <view class="loader-inner">
-            <view class="loader-line-wrap">
-                <view class="loader-line"></view>
-            </view>
-            <view class="loader-line-wrap">
-                <view class="loader-line"></view>
-            </view>
-            <view class="loader-line-wrap">
-                <view class="loader-line"></view>
-            </view>
-            <view class="loader-line-wrap">
-                <view class="loader-line"></view>
-            </view>
-            <view class="loader-line-wrap">
-                <view class="loader-line"></view>
-            </view>
-        </view>
-    </view>
+<view wx:if="{{!online}}">
+    <block wx:if="{{logs.length}}">
+	<scroll-view class="container" scroll-y="true">
+	  <view class="log panel">
+	  	<view class="log_item" wx:for="{{logs}}" wx:for-index="$index" wx:for-item="log">
+	  		<text class="log_start">{{log.startTime}}</text>
+	  		<text class="log_action">{{log.action}}</text>
+	  		<text class="log_action">{{log.name}}</text>
+	  	</view>
+	  </view>
+	</scroll-view>
+	<view class="clear">
+		<button bindtap="switchModal" class="clear_btn" size="mini" >清除记录</button>
+	</view>
+	<modal 
+		title="提示" 
+		confirm-text="确定" 
+		cancel-text="取消" 
+		hidden="{{modalHidden}}" 
+		bindconfirm="clearLog" 
+		bindcancel="switchModal">
+	    是否清除记录？此操作不可恢复!
+	</modal>
+</block>
+<block wx:else>
+    <van-empty description="空空如也" />
+</block>
+<toast hidden="{{toastHidden}}" bindchange="hideToast">清除成功！</toast>
 </view>

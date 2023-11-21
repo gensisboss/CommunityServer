@@ -1,4 +1,10 @@
 //app.js
+const defaultTime = {
+    defaultWorkTime: 25,
+    defaultRestTime: 5
+  }
+  
+
 App({
   onLaunch: function () {
     if (!wx.cloud) {
@@ -16,7 +22,27 @@ App({
       nickName:'',
       online:true,
       detailData:'',
-      officialChanngel:''
+      officialChanngel:'',
+      screenHeight:1336,
+      screenWidth:750,
     }
+
+
+    let workTime = wx.getStorageSync('workTime')
+    let restTime = wx.getStorageSync('restTime')
+    if (!workTime) {
+      wx.setStorage({
+        key: 'workTime',
+        data: defaultTime.defaultWorkTime
+      })
+    }
+    if (!restTime) {
+      wx.setStorage({
+        key: 'restTime',
+        data: defaultTime.defaultRestTime
+      })
+    }
+
+    
   }
 })
